@@ -1,6 +1,54 @@
-const guessesObj = []
+const guessesArr = [
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+]
+
+// Boolean 'state' controls the acceptance of keypress
+let state = false
+
+// main
+document.getElementById('startBtn').addEventListener('click', function(){
+  startGame()
+})
+
+// START GAME
+function startGame(){
+  // change screen
+  // 後でコメントアウト　↓
+  // document.getElementById('startArea').style.display = 'none'
+  // document.getElementById('gameArea').style.display = 'block'
+
+  state = !state
+
+}
 
 
+
+// FOR INPUT EVENT
+document.getElementById('answerBtn').addEventListener('click', function(){
+  let answerInputArea = document.querySelector('input')
+  // if the value in the input box == 5, 
+  if (answerInputArea.value.length !== 5){
+    ;
+  } else {
+    console.log('ok')
+  }
+})
+
+// FOR ONSCREEN KEYBOARD INPUT
+const keys = document.getElementsByClassName('keys')
+for (let key of keys){
+  key.addEventListener('click', function(){
+    console.log(key.dataset['letter'])
+  })
+}
+
+
+// FOR KEYPRESS EVENT
 document.addEventListener('keydown',keyDown);
 function keyDown(e) {
     // if(!state) return;

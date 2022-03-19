@@ -1,0 +1,96 @@
+body{
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  font-family: 'Palette Mosaic', cursive;
+}
+
+/* start */
+
+#startArea{
+  min-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 後でコメントアウト */
+  display: none;
+}
+#startBtn{
+  width: 300px;
+  padding: 30px;
+  border: none;
+  font-size: 30px;
+}
+
+/* game area */
+
+#gameArea{
+  width: 80%;
+  margin: auto;
+  /* 後でコメント戻す ↓ */
+  /* display: none; */
+}
+.rows{
+  display: flex;
+  justify-content: center;
+}
+.box{
+  width: 70px;
+  height: 70px;
+  border: 3px solid lightgrey;
+  margin: 3px;
+}
+
+
+
+/* input area */
+#answerBtn{
+  padding: 10px 40px;
+  background-color: hotpink;
+  color: beige;
+  font-size: 20px;
+  border: none;
+}
+
+input{
+  height: 3em;
+  width: 35%;
+}
+
+
+
+/* keyboard area */
+
+#keyboardArea{
+  width: 90%;
+  margin: auto;
+}
+
+.keyboardRows{
+  display: flex;
+  justify-content: center;
+}
+
+.keys{
+  width: 50px;
+  height: 70px;
+  border: none;
+  margin: 4px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition-duration: 0.5s;
+}
+
+.keys:hover{
+  background-color: rgb(145, 240, 243);
+  color: beige;
+  font-size: 2em;
+}
+
+#enter, #backspace{
+  width: 6rem;
+}
+#enter > img{
+  width: 25px;
+}

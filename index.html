@@ -5,54 +5,101 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Wordle</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
   <h1>Wordle</h1>
-  <div id="gamesArea">
-    <div class="rows" id='row1'>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
+  <div id="startArea">
+    <button id="startBtn">START</button>
+  </div>
+  <div id="gameArea">
+    <div class="boxes">
+      <div class="rows" id='row1'>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="rows" id='row2'>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="rows" id='row3'>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="rows" id='row4'>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="rows" id='row5'>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="rows" id='row6'>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
     </div>
-    <div class="rows" id='row2'>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
+    <div id="inputAnswer" style="margin: 20px;">
+      <input type="text">
+      <button id="answerBtn">GUESS!</button>
     </div>
-    <div class="rows" id='row3'>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
+    <div id="keyboardArea">
+      <div class="keyboardRows" id="keyboardRow1">
+        <button data-letter="q" class="keys">Q</button>
+        <button data-letter="w" class="keys">W</button>
+        <button data-letter="e" class="keys">E</button>
+        <button data-letter="r" class="keys">R</button>
+        <button data-letter="t" class="keys">T</button>
+        <button data-letter="y" class="keys">Y</button>
+        <button data-letter="u" class="keys">U</button>
+        <button data-letter="i" class="keys">I</button>
+        <button data-letter="o" class="keys">O</button>
+        <button data-letter="p" class="keys">P</button>
+      </div>
+      <div class="keyboardRows" id="keyboardRow2">
+        <button data-letter="a" class="keys">A</button>
+        <button data-letter="s" class="keys">S</button>
+        <button data-letter="d" class="keys">D</button>
+        <button data-letter="f" class="keys">F</button>
+        <button data-letter="g" class="keys">G</button>
+        <button data-letter="h" class="keys">H</button>
+        <button data-letter="j" class="keys">J</button>
+        <button data-letter="k" class="keys">K</button>
+        <button data-letter="l" class="keys">L</button>
+      </div>
+      <div class="keyboardRows" id="keyboardRow3">
+        <button id="enter" data-letter="enter" class="keys"><img src="static/imgs/return.png"></button>
+        <button data-letter="z" class="keys">Z</button>
+        <button data-letter="x" class="keys">X</button>
+        <button data-letter="c" class="keys">C</button>
+        <button data-letter="v" class="keys">V</button>
+        <button data-letter="b" class="keys">B</button>
+        <button data-letter="n" class="keys">N</button>
+        <button data-letter="m" class="keys">M</button>
+        <button id="backspace" data-letter="backspace" class="keys"><img src="static/imgs/backspace.png"></button>
+      </div>
     </div>
-    <div class="rows" id='row4'>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-    </div>
-    <div class="rows" id='row5'>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-    </div>
-    <div class="rows" id='row6'>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-    </div>
-
   </div>
   <script src="script.js"></script>
 </body>
