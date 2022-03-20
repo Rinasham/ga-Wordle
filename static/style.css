@@ -10,15 +10,17 @@ body{
 #startArea{
   min-height: 700px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   /* 後でコメントアウト */
   display: none;
 }
-#startBtn{
+.startBtn{
   width: 300px;
   padding: 30px;
+  margin: 30px;
   border: none;
   font-size: 30px;
 }
@@ -31,6 +33,7 @@ body{
   /* 後でコメント戻す ↓ */
   /* display: none; */
 }
+
 .rows{
   display: flex;
   justify-content: center;
@@ -45,6 +48,12 @@ body{
 
 
 /* input area */
+
+#InputGameArea, #onscreenArea, h3{
+  /* 後でコメント戻す ↓ */
+  /* display: none; */
+}
+
 #answerBtn{
   padding: 10px 40px;
   background-color: hotpink;
