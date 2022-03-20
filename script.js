@@ -53,23 +53,26 @@ function startGame(startBtn){
 let guessedLetters = ''
 
 // 5 boxes in a row
-// the number of a row is `row${answerCount + 1}`
-let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
+  // the number of a row is `row${answerCount + 1}`
+  let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
 
 // FOR INPUT EVENT
 function inputGame(){
   if(!state) return
 
   let inputBox = document.querySelector('input')
-  inputBox.addEventListener('keyup', function(e){
-    guessedLetters = e.target.value //input formに入っているリアルタイムの文字列、 delete処理いらない
 
+  inputBox.addEventListener('keyup', function(e){
+    let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
+    guessedLetters = e.target.value //input formに入っているリアルタイムの文字列、 delete処理いらない
+    console.log(guessedLetters)
     // sync the input form value with the letters in cells
     if(e.key === 'Backspace'){
       // if the input form value's length is less than 5,
       // and the event key is 'backSpace',
       // delete matching letter in the cells
       if (guessedLetters.length < 5){
+        console.log(boxesInRow)
         console.log(guessedLetters)
         boxesInRow[howManyLetters -1].textContent = ''
         howManyLetters -= 1
@@ -79,9 +82,11 @@ function inputGame(){
       // show typed letters in the cells
     } else {
       if(howManyLetters < 5) {
+        console.log(boxesInRow)
         boxesInRow[howManyLetters].textContent = guessedLetters[howManyLetters]
         howManyLetters += 1
         guessesArr[answerCount] += e.key
+        console.log(boxesInRow)
       }
     }
   })
@@ -100,13 +105,15 @@ function inputGame(){
       checkAnswer(guessesArr[answerCount], question)
     // how many times has the user guessed? + 1
       answerCount += 1
-
+      console.log(answerCount) ///////
     // // when answerCount variable gets up to 6, function finish fires
     if (answerCount === 6){
       finish()
+      state = !state
     }
   })
 }
+
 
 
 
@@ -177,6 +184,10 @@ function createQuestion(){
 // parameter == user's guess (strings)
 function checkAnswer(guess){
   console.log(question)
+  // 5 boxes in a row
+  // the number of a row is `row${answerCount + 1}`
+  let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
+
   // guessを一文字ずつcheck
   for (let i=0; i<guess.length; i++){
     // Is that letter included?
