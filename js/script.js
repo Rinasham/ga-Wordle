@@ -207,7 +207,7 @@ function checkAnswer(guess){
         boxesInRow[i].style.color = 'white'
         boxesInRow[i].classList.add('green')
       } else {
-        boxesInRow[i].style.backgroundColor = 'yellow'
+        boxesInRow[i].style.backgroundColor = '#f1ca2b'
         boxesInRow[i].style.color = 'white'
       }
     }
