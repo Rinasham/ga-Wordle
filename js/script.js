@@ -1,4 +1,4 @@
-const guessesArr = ['','','','','']
+const guessesArr = ['','','','','','']
 
 const questionsArr = ['quest', 'point', 'imply', 'agile', 'alloy']
 
@@ -23,12 +23,12 @@ console.log(`Question is ${question}`) // 後でコメントアウト
 
 // main
 function main () {
-  console.log('main')
   answerCount = 0
   document.getElementById('gameArea').style.display = 'none'
   document.getElementById('onscreenArea').style.display = 'none'
   document.querySelector('h3').style.display = 'none'
   document.querySelector('h1').animate([{opacity: '0'}, {opacity: '1'}], 500)
+  document.getElementById('author').animate([{opacity: '0'}, {opacity: '1'}], 500)
   document.getElementById('startArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
   document.getElementById('startArea').style.display = 'flex'
 
@@ -53,10 +53,10 @@ function startGame(startBtn){
   // 後でコメントアウト　↓
   document.getElementById('gameArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
   document.getElementById('gameArea').style.display = 'block'
+  document.getElementById('author').style.display = 'none'
   document.getElementById('startArea').style.display = 'none'
   // accept keypress
   state = !state
-  console.log(state)
   if (startBtn === 'OnscreenStartBtn'){
     document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
     document.getElementById('onscreenArea').style.display = 'block'
@@ -104,7 +104,7 @@ function onScreen(){
           answerCount += 1
           console.log(answerCount)
           if (answerCount === 6){
-            finish()
+            finish('lose')
             state = !state
           }
         } else {
@@ -147,7 +147,6 @@ function keydownEvent(){
       let boxesInRow = document.getElementById(`row${answerCount + 1}`)
       if (e.code.startsWith('Key')){
         if(howManyLetters < 5) {
-          console.log(e.key)
           boxesInRow.children[howManyLetters].textContent = e.key
           howManyLetters += 1
           guessesArr[answerCount] += e.key
@@ -164,10 +163,12 @@ function keydownEvent(){
           checkAnswer(guessesArr[answerCount])
           // 次の行に移動
           howManyLetters = 0
+
           // how many times has the user guessed? + 1
           answerCount += 1
+
           if (answerCount === 6){
-            finish()
+            finish('lose')
           }
         } else {
           document.querySelector('h4').style.display = 'block'
@@ -212,20 +213,22 @@ function checkAnswer(guess){
     }
     let correctAnswersNum = document.getElementsByClassName('green')
     if (correctAnswersNum.length === 5){
-      finish()
+      finish('win')
     }
   }
 }
 
 // FINISH
-function finish(){
+function finish(result){
   state = !state
 
-  register()
+  register(result)
+  getAllData(callback1)
+
 
   // show modal with results
-  document.getElementById('modal-wrapper').style.display = 'block'
-  document.getElementById('modal-wrapper').animate([{opacity: '0'}, {opacity: '1'}], 500)
+  // document.getElementById('modal-wrapper').style.display = 'block'
+  // document.getElementById('modal-wrapper').animate([{opacity: '0'}, {opacity: '1'}], 500)
 
   // make the modal invisible when clicked
   document.getElementById('close-modal').addEventListener('click', function(){

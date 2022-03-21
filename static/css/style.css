@@ -36,10 +36,6 @@ body{
   display: none;
 }
 
-span{
-  text-decoration: underline;
-}
-
 .rows{
   display: flex;
   justify-content: center;
@@ -132,7 +128,7 @@ input{
   position: absolute;
   top: 20%;
   left: 34%;
-  background-color: rgba(250, 250, 250, 0.9);
+  background-color: rgba(250, 250, 250, 0.93);
   padding: 20px 0 40px;
   border-radius: 10px;
   width: 600px;
@@ -195,5 +191,9 @@ span {
   height: 20px;
   /* change width according to the win rate */
   width: 100px;
-  background-color: lightslategray;
+  background-color: green;
+}
+
+.percentage {
+  margin: 0 15px;
 }

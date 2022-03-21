@@ -120,12 +120,12 @@
       </div>
       <p>STATISTICS</p>
       <div id="statistics">
-        <article id="gameCount">
-          <div class="result">1</div>
+        <article>
+          <div class="result" id="gameCount">1</div>
           <div class="explanation">Played</div>
         </article>
-        <article id="winRate">
-          <div class="result">100</div>
+        <article>
+          <div class="result" id="winRate">100</div>
           <div class="explanation">Win %</div>
         </article>
         <article id="currentStreak">
@@ -140,34 +140,46 @@
       <p>GUESS DISRIBUTION</p>
       <div id="distribution">
         <li>
-          <p style="font-size: 20px;">1<span class="count">0</span></p>
+          <p style="font-size: 20px;">1</p>
+          <p class="count">0</p>
           <div class="bar" id="bar1"></div>
+          <p class="percentage"></p>
         </li>
         <li style="list-style: none;">
-          <p style="font-size: 20px;">2<span class="count">0</span></p>
+          <p style="font-size: 20px;">2</p>
+          <p class="count">0</p>
           <div class="bar" id="bar2"></div>
+          <p class="percentage"></p>
         </li>
         <li style="list-style: none;">
-          <p style="font-size: 20px;">3<span class="count">0</span></p>
+          <p style="font-size: 20px;">3</p>
+          <p class="count">0</p>
           <div class="bar" id="bar3"></div>
+          <p class="percentage"></p>
         </li>
         <li style="list-style: none;">
-          <p style="font-size: 20px;">4<span class="count">0</span></p>
+          <p style="font-size: 20px;">4</p>
+          <p class="count">0</p>
           <div class="bar" id="bar4"></div>
+          <p class="percentage"></p>
         </li>
         <li style="list-style: none;">
-          <p style="font-size: 20px;">5<span class="count">0</span></p>
+          <p style="font-size: 20px;">5</p>
+          <p class="count">0</p>
           <div class="bar" id="bar5"></div>
+          <p class="percentage"></p>
         </li>
         <li style="list-style: none;">
-          <p style="font-size: 20px;">6<span class="count">0</span></p>
+          <p style="font-size: 20px;">6</p>
+          <p class="count">0</p>
           <div class="bar" id="bar6"></div>
+          <p class="percentage"></p>
         </li>
       </div>
     </div>
   </div>
 
-
+  <p id="author">Created By RINA</p>
 
   <script src="js/script.js"></script>
   <script src="js/indexedDB.js"></script>
