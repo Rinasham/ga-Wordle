@@ -113,3 +113,70 @@ input{
 #enter > img{
   width: 25px;
 }
+
+
+
+/* modal */
+#modal-wrapper{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  /* display: none; */
+}
+
+.modal-box {
+  position: absolute;
+  top: 20%;
+  left: 34%;
+  background-color: #e6ecf0;
+  padding: 20px 0 40px;
+  border-radius: 10px;
+  width: 600px;
+  height: auto;
+  text-align: center;
+}
+
+.fa-times {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: rgba(245, 239, 239, 0.46);
+  cursor: pointer;
+}
+
+#statistics {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+article{
+  margin: 10px;
+}
+
+.result {
+  font-size: 35px;
+}
+
+#distribution {
+  width: 70%;
+  margin: auto;
+}
+
+.count {
+  color: #e6ecf0;
+  background-color: lightgrey;
+  padding: 0 3px;
+}
+
+#distribution > li > p {
+  margin-bottom: -0.6em;
+}
+
+li {
+  list-style: none; display: flex;
+}
