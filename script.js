@@ -63,15 +63,15 @@ function inputGame(){
   let inputBox = document.querySelector('input')
 
   inputBox.addEventListener('keyup', function(e){
+    if (!state) return
     let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
     guessedLetters = e.target.value //input formに入っているリアルタイムの文字列、 delete処理いらない
-    console.log(guessedLetters)
     // sync the input form value with the letters in cells
     if(e.key === 'Backspace'){
       // if the input form value's length is less than 5,
       // and the event key is 'backSpace',
       // delete matching letter in the cells
-      if (guessedLetters.length < 5){
+      if (0 < guessedLetters.length < 5){
         console.log(boxesInRow)
         console.log(guessedLetters)
         boxesInRow[howManyLetters -1].textContent = ''
@@ -80,13 +80,20 @@ function inputGame(){
         console.log(guessesArr)
       }
       // show typed letters in the cells
-    } else {
+      //if pressed any of meta keys(?)
+    } else if (!e.code.startsWith('Key')){
+      ;
+      // if the key is something able to input in the input box
+      //(to get it consistent with letter index)
+    } else if (e.code == /(Period|Slash)/){
+      console.log('ダメー')
+    }else {
       if(howManyLetters < 5) {
-        console.log(boxesInRow)
+        // console.log(boxesInRow)
         boxesInRow[howManyLetters].textContent = guessedLetters[howManyLetters]
         howManyLetters += 1
         guessesArr[answerCount] += e.key
-        console.log(boxesInRow)
+        // console.log(guessesArr)
       }
     }
   })
@@ -95,7 +102,7 @@ function inputGame(){
 
   document.getElementById('answerBtn').addEventListener('click', function(){
     // reset the letter index in rows so that you can move on to the next guess
-    howManyLetters = 0;
+    howManyLetters = 0
 
     let answerInputArea = document.querySelector('input')
 
@@ -105,7 +112,6 @@ function inputGame(){
       checkAnswer(guessesArr[answerCount], question)
     // how many times has the user guessed? + 1
       answerCount += 1
-      console.log(answerCount) ///////
     // // when answerCount variable gets up to 6, function finish fires
     if (answerCount === 6){
       finish()
@@ -119,7 +125,6 @@ function inputGame(){
 
 
 
-// function 
 
 
 
@@ -146,26 +151,38 @@ for (let key of keys){
 function keydownEvent(){
   document.addEventListener('keydown',keyDown);
   function keyDown(e) {
-      // if(!state) return;
-      // Shiftキーが押されたら何もしないまま次へ
-      if(e.keyCode === 16) {
-          ;
-      }else{
-          // if(e.key === splitWord[0].textContent){
-          //     splitWord[0].className = 'after-input';
-          //     //　正解数＋１
-          //     correct = correct + 1;
-          //     correctText.text('正解数：' + correct);
-          //     console.log('correct'+correct);
-          //     // 正解したら次の文字へ行く
-          //     splitWord.shift();
-          //     if(!splitWord.length) createQuestion();
-          // }else{
-          // incorrect = incorrect + 1;
-          // incorrectText.text('不正解数：' + incorrect);
-          // console.log('incorrect'+incorrect);
-          // }
-          // console.log(e.key)
+      if(!state) return;
+      document.querySelector('h4').style.display = 'none'
+      let boxesInRow = document.getElementById(`row${answerCount + 1}`)
+      if (e.code.startsWith('Key')){
+        if(howManyLetters < 5) {
+          // console.log(boxesInRow)
+          boxesInRow.children[howManyLetters].textContent = e.key
+          howManyLetters += 1
+          guessesArr[answerCount] += e.key
+          console.log(guessesArr)
+        }
+      } else if(e.key === 'Backspace'){
+        if (0 < howManyLetters.length < 5){
+          boxesInRow.children[howManyLetters -1].textContent = ''
+          howManyLetters -= 1
+          guessesArr[answerCount] = guessesArr[answerCount].slice(0, -1)
+          console.log(howManyLetters)
+        }
+      } else if (e.code = 'Enter'){
+        if(howManyLetters === 5){
+          checkAnswer(guessesArr[answerCount])
+          // 次の行に移動
+          howManyLetters = 0
+          // how many times has the user guessed? + 1
+          answerCount += 1
+          if (answerCount === 6){
+            finish()
+            state = !state
+          }
+        } else {
+          document.querySelector('h4').style.display = 'block'
+        }
       }
   }
 }
@@ -183,7 +200,7 @@ function createQuestion(){
 // CHECK THE GUESS
 // parameter == user's guess (strings)
 function checkAnswer(guess){
-  console.log(question)
+  console.log(guess)
   // 5 boxes in a row
   // the number of a row is `row${answerCount + 1}`
   let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
@@ -192,20 +209,25 @@ function checkAnswer(guess){
   for (let i=0; i<guess.length; i++){
     // Is that letter included?
     if(!question.includes(guess[i])){
-      console.log(boxesInRow[i].textContent)
+      // console.log(boxesInRow[i].textContent)
       boxesInRow[i].style.backgroundColor = 'grey'
       boxesInRow[i].style.color = 'white'
     } else {
       // Is position correct?
       const indexOfLetterQuestion = question.indexOf(boxesInRow[i].textContent)
-      console.log(i)
+      // console.log(i)
       if (indexOfLetterQuestion === i){
         boxesInRow[i].style.backgroundColor = 'green'
         boxesInRow[i].style.color = 'white'
+        boxesInRow[i].classList.add('green')
       } else {
         boxesInRow[i].style.backgroundColor = 'yellow'
         boxesInRow[i].style.color = 'white'
       }
+    }
+    let correctAnswersNum = document.getElementsByClassName('green')
+    if (correctAnswersNum.length === 6){
+      console.log('6個正解だよ')
     }
   }
 }

@@ -33,7 +33,7 @@ body{
   width: 90%;
   margin: auto;
   /* 後でコメント戻す ↓ */
-  /* display: none; */
+  display: none;
 }
 
 span{
@@ -59,7 +59,7 @@ span{
 
 #InputGameArea, #onscreenArea, h3{
   /* 後でコメント戻す ↓ */
-  /* display: none; */
+  display: none;
 }
 
 #answerBtn{
