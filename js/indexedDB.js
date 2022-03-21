@@ -22,3 +22,14 @@ database.onsuccess = function (event) {
 database.onerror = function (event) {
   console.log("データベースに接続できませんでした");
 }
+
+function register(){
+  let turn = answerCount + 1
+  insertData(turn)
+}
+
+function insertData (turn) {
+  // get current dateTime to make an unique ID for the data
+  let uniqueID = new Date().getTime().toString();
+  console.log(uniqueID);
+}

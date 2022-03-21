@@ -130,7 +130,6 @@ function keydownEvent(){
           boxesInRow.children[howManyLetters].textContent = e.key
           howManyLetters += 1
           guessesArr[answerCount] += e.key
-          console.log(guessesArr)
         }
       } else if(e.key === 'Backspace'){
         if (0 < howManyLetters.length < 5){
@@ -182,7 +181,6 @@ function checkAnswer(guess){
       boxesInRow[i].style.color = 'white'
     } else {
       // Is position correct?
-      console.log(question)
       if (question[i] === boxesInRow[i].textContent){
         boxesInRow[i].style.backgroundColor = 'green'
         boxesInRow[i].style.color = 'white'
@@ -194,13 +192,16 @@ function checkAnswer(guess){
     }
     let correctAnswersNum = document.getElementsByClassName('green')
     if (correctAnswersNum.length === 5){
-      console.log('正解だよ')
-      console.log(`${answerCount + 1}ターンで正解`)
+      finish()
     }
   }
 }
 
 // FINISH
 function finish(){
-  console.log('finishhhhhh')
+  register()
+
+  // show modal with results
+  document.getElementById('modal-wrapper').style.display = 'block'
+  document.getElementById('modal-wrapper').animate([{opacity: '0'}, {opacity: '1'}], 500)
 }
