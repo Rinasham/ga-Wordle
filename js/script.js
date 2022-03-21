@@ -51,21 +51,24 @@ main()
 function startGame(startBtn){
   // change screen
   // 後でコメントアウト　↓
+  document.getElementById('gameArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
   document.getElementById('gameArea').style.display = 'block'
   document.getElementById('startArea').style.display = 'none'
   // accept keypress
   // state = !state
   // console.log(state)
   if (startBtn === 'OnscreenStartBtn'){
+    document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
     document.getElementById('onscreenArea').style.display = 'block'
     onScreen()
   } else {
+    document.querySelector('h3').animate([{opacity: '0'}, {opacity: '1'}], 500)
     document.querySelector('h3').style.display = 'block'
     keydownEvent()
   }
 }
 
-// let guessedLetters = ''
+
 
 // 5 boxes in a row
   // the number of a row is `row${answerCount + 1}`
