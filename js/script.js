@@ -3,7 +3,7 @@ const guessesArr = ['','','','','']
 const questionsArr = ['quest', 'point', 'imply', 'agile', 'alloy']
 
 // Boolean 'state' controls the acceptance of keypress
-// let state = false
+let state = false
 
 // Variable for counting HOW MANY TIMES you answered
 let answerCount = 0
@@ -55,8 +55,8 @@ function startGame(startBtn){
   document.getElementById('gameArea').style.display = 'block'
   document.getElementById('startArea').style.display = 'none'
   // accept keypress
-  // state = !state
-  // console.log(state)
+  state = !state
+  console.log(state)
   if (startBtn === 'OnscreenStartBtn'){
     document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
     document.getElementById('onscreenArea').style.display = 'block'
@@ -85,7 +85,7 @@ function startGame(startBtn){
 
 // FOR ONSCREEN KEYBOARD INPUT
 function onScreen(){
-  // if(!state) return
+  if(!state) return
 
   const keys = document.getElementsByClassName('keys')
 
@@ -105,7 +105,7 @@ function onScreen(){
           console.log(answerCount)
           if (answerCount === 6){
             finish()
-            // state = !state
+            state = !state
           }
         } else {
           document.querySelector('h4').style.display = 'block'
@@ -142,7 +142,7 @@ function keydownEvent(){
   document.addEventListener('keydown',keyDown)
 
   function keyDown(e) {
-      // if(!state) return
+      if(!state) return
       document.querySelector('h4').style.display = 'none'
       let boxesInRow = document.getElementById(`row${answerCount + 1}`)
       if (e.code.startsWith('Key')){
@@ -219,7 +219,7 @@ function checkAnswer(guess){
 
 // FINISH
 function finish(){
-  // state = !state
+  state = !state
 
   register()
 
