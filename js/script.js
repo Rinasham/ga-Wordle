@@ -3,15 +3,12 @@ const guessesArr = ['','','','','']
 const questionsArr = ['quest', 'point', 'imply', 'agile', 'alloy']
 
 // Boolean 'state' controls the acceptance of keypress
-let state = false
+// let state = false
 
 // Variable for counting HOW MANY TIMES you answered
 let answerCount = 0
 let howManyLetters = 0
 
-// set a question
-const question = createQuestion()
-console.log(`Question is ${question}`) // 後でコメントアウト
 
 
 // start buttons variable
@@ -20,14 +17,34 @@ const onscreenStartBtn = document.getElementById('OnscreenStartBtn')
 const keyboardStartBtn = document.getElementById('KeyboardStartBtn')
 
 
+  // set a question
+  const question = createQuestion()
+  console.log(`Question is ${question}`) // 後でコメントアウト
+
 // main
-for (let startBtn of startBtns){
-  startBtn.addEventListener('click', function(e){
-    const whichBtn = e.target.id
-    // parameter == which button was pressed to start
-    startGame(whichBtn)
-  })
+function main () {
+  console.log('main')
+  answerCount = 0
+  document.getElementById('gameArea').style.display = 'none'
+  document.getElementById('onscreenArea').style.display = 'none'
+  document.querySelector('h3').style.display = 'none'
+  document.querySelector('h1').animate([{opacity: '0'}, {opacity: '1'}], 500)
+  document.getElementById('startArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
+  document.getElementById('startArea').style.display = 'flex'
+
+
+
+  for (let startBtn of startBtns){
+    startBtn.addEventListener('click', function(e){
+      const whichBtn = e.target.id
+      // parameter == which button was pressed to start
+      startGame(whichBtn)
+    })
+  }
 }
+
+main()
+
 
 
 // START GAME
@@ -37,7 +54,8 @@ function startGame(startBtn){
   document.getElementById('gameArea').style.display = 'block'
   document.getElementById('startArea').style.display = 'none'
   // accept keypress
-  state = !state
+  // state = !state
+  // console.log(state)
   if (startBtn === 'OnscreenStartBtn'){
     document.getElementById('onscreenArea').style.display = 'block'
     onScreen()
@@ -64,7 +82,7 @@ function startGame(startBtn){
 
 // FOR ONSCREEN KEYBOARD INPUT
 function onScreen(){
-  if(!state) return
+  // if(!state) return
 
   const keys = document.getElementsByClassName('keys')
 
@@ -84,7 +102,7 @@ function onScreen(){
           console.log(answerCount)
           if (answerCount === 6){
             finish()
-            state = !state
+            // state = !state
           }
         } else {
           document.querySelector('h4').style.display = 'block'
@@ -121,12 +139,12 @@ function keydownEvent(){
   document.addEventListener('keydown',keyDown)
 
   function keyDown(e) {
-      if(!state) return
+      // if(!state) return
       document.querySelector('h4').style.display = 'none'
       let boxesInRow = document.getElementById(`row${answerCount + 1}`)
       if (e.code.startsWith('Key')){
         if(howManyLetters < 5) {
-          // console.log(boxesInRow)
+          console.log(e.key)
           boxesInRow.children[howManyLetters].textContent = e.key
           howManyLetters += 1
           guessesArr[answerCount] += e.key
@@ -147,7 +165,6 @@ function keydownEvent(){
           answerCount += 1
           if (answerCount === 6){
             finish()
-            state = !state
           }
         } else {
           document.querySelector('h4').style.display = 'block'
@@ -199,9 +216,66 @@ function checkAnswer(guess){
 
 // FINISH
 function finish(){
+  // state = !state
+
   register()
 
   // show modal with results
   document.getElementById('modal-wrapper').style.display = 'block'
   document.getElementById('modal-wrapper').animate([{opacity: '0'}, {opacity: '1'}], 500)
+
+  // make the modal invisible when clicked
+  document.getElementById('close-modal').addEventListener('click', function(){
+    document.getElementById('modal-wrapper').animate([{opacity: '1'}, {opacity: '0'}], 500)
+    setTimeout(fadeoutModal, 500)
+    function fadeoutModal(){
+      document.getElementById('modal-wrapper').style.display = 'none'
+    }
+    clearBoxes()
+    // set question
+    const question = createQuestion()
+    console.log(`Question is ${question}`)
+
+    // reset arr
+    // guessesArr = ['','','','','']
+    for (let i=0; i< guessesArr.length ; i++) {
+      guessesArr[i] = ''
+    }
+    console.log(guessesArr)
+
+    console.log(howManyLetters)
+    // console.log(state)
+    // clear answerCount
+    answerCount = 0
+    console.log(answerCount)
+    function screenFadeOut(){
+      let screen = document.body
+      screen.animate([{opacity: '1'}, {opacity: '0'}], 500) // ~ 1000ms
+    }
+    setTimeout(screenFadeOut, 600) // ~ 1000ms
+    function invisibleGameArea(){
+      document.getElementById('gameArea').style.display = 'none'
+      document.getElementById('onscreenArea').style.display = 'none'
+      document.querySelector('h1').style.display = 'none'
+      document.querySelector('h3').style.display = 'none'
+    }
+    setTimeout(invisibleGameArea, 1080) // ~ 1000ms
+    function reload(){
+      document.location.reload()
+    }
+    setTimeout(reload, 1200)
+  })
+}
+
+
+// CLEAR TEXTCONTENTS IN ALL THE BOXES
+function clearBoxes(){
+  const boxes = document.querySelectorAll('.box')
+  for (let box of boxes) {
+    box.textContent = ''
+    if (box.classList.contains('green')){
+      box.classList.remove('green')
+    }
+    box.style.backgroundColor = 'white'
+  }
 }

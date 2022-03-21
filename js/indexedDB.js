@@ -80,7 +80,6 @@ function insertData (turn) {
     let addData = store.add(data);
     addData.onsuccess = function () {
         console.log("データが登録できました");
-        alert("登録しました");
     }
     addData.onerror = function () {
         console.log("データが登録できませんでした");
