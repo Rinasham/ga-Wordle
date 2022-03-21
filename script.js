@@ -40,6 +40,7 @@ function startGame(startBtn){
   state = !state
   if (startBtn === 'OnscreenStartBtn'){
     document.getElementById('onscreenArea').style.display = 'block'
+    onScreen()
   } else {
     document.querySelector('h3').style.display = 'block'
     keydownEvent()
@@ -62,18 +63,54 @@ function startGame(startBtn){
 
 
 // FOR ONSCREEN KEYBOARD INPUT
-const keys = document.getElementsByClassName('keys')
-for (let key of keys){
-  key.addEventListener('click', function(){
-    if (key.dataset['letter'] === 'enter'){
-      console.log('ENTER dayooooo')
-    } else if (key.dataset['letter'] === 'backspace'){
-      console.log('BACKSPACE dayooooo')
-    } else {
-      // 文字がアルファベットだった時の処理
-    }
-  })
+function onScreen(){
+  if(!state) return
+
+  const keys = document.getElementsByClassName('keys')
+
+  for (let key of keys){
+    key.addEventListener('click', function(){
+
+      document.querySelector('h4').style.display = 'none'
+      let boxesInRow = document.getElementById(`row${answerCount + 1}`)
+
+      if (key.dataset['letter'] === 'enter'){
+        if(howManyLetters === 5){
+          checkAnswer(guessesArr[answerCount])
+          // 次の行に移動
+          howManyLetters = 0
+          // how many times has the user guessed? + 1
+          answerCount += 1
+          console.log(answerCount)
+          if (answerCount === 6){
+            finish()
+            state = !state
+          }
+        } else {
+          document.querySelector('h4').style.display = 'block'
+        }
+        // Backspace
+      } else if (key.dataset['letter'] === 'backspace'){
+        if (0 < howManyLetters.length < 5){
+          boxesInRow.children[howManyLetters -1].textContent = ''
+          howManyLetters -= 1
+          guessesArr[answerCount] = guessesArr[answerCount].slice(0, -1)
+          console.log(howManyLetters)
+        }
+      } else {
+        // 文字がアルファベットだった時の処理
+        if(howManyLetters < 5) {
+          console.log(key.dataset['letter'])
+          boxesInRow.children[howManyLetters].textContent = key.dataset['letter']
+          howManyLetters += 1
+          guessesArr[answerCount] += key.dataset['letter']
+          console.log(guessesArr)
+        }
+      }
+    })
+  }
 }
+
 
 
 
@@ -81,9 +118,10 @@ for (let key of keys){
 
 // FOR KEYPRESS EVENT
 function keydownEvent(){
-  document.addEventListener('keydown',keyDown);
+  document.addEventListener('keydown',keyDown)
+
   function keyDown(e) {
-      if(!state) return;
+      if(!state) return
       document.querySelector('h4').style.display = 'none'
       let boxesInRow = document.getElementById(`row${answerCount + 1}`)
       if (e.code.startsWith('Key')){
