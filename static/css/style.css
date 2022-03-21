@@ -168,6 +168,7 @@ article{
   background-color: rgba(29, 28, 28, 0.6);
   margin: 0 7px;
   padding: 0 7px;
+  width: 24px;
 }
 
 /* force <p> to be within the range of <li> */
@@ -179,8 +180,8 @@ article{
 li {
   list-style: none;
   display: flex;
-  margin: 5px 0;
-  height: 25px;
+  margin: 8px 0;
+  height: 20px;
 }
 
 span {
