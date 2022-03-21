@@ -87,3 +87,24 @@ function insertData (turn) {
     db.close()
   }
 }
+
+
+// GET DATA FROM DB
+function getData(){
+  let database = indexedDB.open(dbName);
+    database.onsuccess = function (event) {
+      let db = event.target.result;
+      let transaction = db.transaction(storeName, "readonly");
+      // store = table
+      let store = transaction.objectStore(storeName);
+      // storeAll method gets all the records in the table
+      // data contains all those data (in object form)
+      store.getAll().onsuccess = function (data) {
+        // rows == object that coutain all data object in DB
+        let rows = data.target.result;
+        console.log(rows.length)
+      }
+      
+    }
+}
+getData()

@@ -17,9 +17,9 @@ const onscreenStartBtn = document.getElementById('OnscreenStartBtn')
 const keyboardStartBtn = document.getElementById('KeyboardStartBtn')
 
 
-  // set a question
-  const question = createQuestion()
-  console.log(`Question is ${question}`) // 後でコメントアウト
+// set a question
+const question = createQuestion()
+console.log(`Question is ${question}`) // 後でコメントアウト
 
 // main
 function main () {
