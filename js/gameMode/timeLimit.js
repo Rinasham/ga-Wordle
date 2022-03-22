@@ -6,6 +6,7 @@ let TIME = 0
 
 function startTimer(){
   const timer = document.getElementById('timer');
+  // clearInterval(countdown);
   const countdown = setInterval(function() {
     timer.textContent = --TIME + ' SECONDS';
     if(TIME <= 0) {

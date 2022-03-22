@@ -4,6 +4,7 @@ body{
   min-width: 570px;
   text-align: center;
   font-family: 'Bungee', cursive;
+  background-image:url("../imgs/marble.jpg");
 }
 
 /* start */
@@ -47,6 +48,7 @@ body{
   margin: 3px;
   font-size: 25px;
   line-height: 300%;
+  background-color: rgba(255,255,255,0.85);
 }
 
 
@@ -58,7 +60,7 @@ body{
   display: none;
 }
 
-#answerBtn{
+/* #answerBtn{
   padding: 10px 40px;
   font-family: 'Bungee', cursive;
   background-color: hotpink;
@@ -70,7 +72,7 @@ body{
 input{
   height: 3em;
   width: 35%;
-}
+} */
 
 
 

@@ -11,7 +11,7 @@ function getPastRecords(allDataCount){
       const turnsRecordArr = [0,0,0,0,0,0] // each element means how many times the user has won in that turn
 
       for (let recordOfTurn of pastArr){
-        if (0 < recordOfTurn < 7){
+        if (0 < recordOfTurn < 7){ // skip cases where user didn't answer nor took more than 7 guesses
           turnsRecordArr[recordOfTurn - 1] = turnsRecordArr[recordOfTurn - 1] + 1
           // console.log(turnsRecordArr[recordOfTurn])
         }

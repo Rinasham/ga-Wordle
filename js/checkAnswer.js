@@ -17,46 +17,64 @@ function checkAnswer(guess){
   for (let i=0; i<guess.length; i++){
     // Is that letter included?
     if(!question.includes(guess[i])){
-      boxesInRow[i].style.backgroundColor = 'grey'
+      boxesInRow[i].style.backgroundColor = 'rgba(128,128,128,0.85)'
       boxesInRow[i].style.color = 'white'
       for (let key of screenKeys){
         if(key.textContent === guess[i].toUpperCase()){
-          console.log(key)
-          key.style.backgroundColor = 'grey'
+          key.style.backgroundColor = 'rgba(128,128,128,0.85)'
           key.style.color = 'white'
         }
       }
     } else {
       // Is position correct?
       if (question[i] === boxesInRow[i].textContent){
-        boxesInRow[i].style.backgroundColor = 'green'
+        boxesInRow[i].style.backgroundColor = 'rgba(0,128,0,0.75)'
         boxesInRow[i].style.color = 'white'
         boxesInRow[i].classList.add('green')
+        console.log(boxesInRow[i])
         for (let key of screenKeys){
           // console.log(key.textContent)
           if(key.textContent === guess[i].toUpperCase()){
-            key.style.backgroundColor = 'green'
+            key.style.backgroundColor = 'rgba(0,128,0,0.75)'
             key.style.color = 'white'
           }
         }
       } else {
-        boxesInRow[i].style.backgroundColor = '#f1ca2b'
+        // if(boxesInRow[i].classList.contains('green') == true){
+        //   boxesInRow[i].classList.remove('green')
+        // }
+        boxesInRow[i].style.backgroundColor = 'rgba(241,202,43,0.85)'
         boxesInRow[i].style.color = 'white'
         for (let key of screenKeys){
           if(key.textContent === guess[i].toUpperCase()){
-            console.log(key.style.backgroundColor)
-            if(key.style.backgroundColor === 'grey' || !key.style.backgroundColor){
-              key.style.backgroundColor = '#f1ca2b'
+            // console.log(key.style.backgroundColor)
+            if(key.style.backgroundColor === 'rgba(128,128,128,0.85)' || !key.style.backgroundColor){
+              key.style.backgroundColor = 'rgba(241,202,43,0.85)'
               key.style.color = 'white'
             }
           }
         }
       }
     }
-    let correctAnswersNum = document.getElementsByClassName('green')
-    if (correctAnswersNum.length === 5){
-      // clearInterval(countdown)
-      finish('win')
+    console.log(boxesInRow[i])
+
+    // let correctAnswersNum = document.getElementsByClassName('green')
+    // if (correctAnswersNum.length === 5){
+    //   // clearInterval(countdown)
+    //   finish('win')
+    // } else {
+    //   for(let i=0; i<guess.length; i++){
+    //     boxesInRow[i].classList.remove('green')
+    //   }
+    // }
+  }
+  let correctAnswersNum = document.getElementsByClassName('green')
+  if (correctAnswersNum.length === 5){
+    // clearInterval(countdown)
+    finish('win')
+  } else {
+    for(let i=0; i<guess.length; i++){
+      boxesInRow[i].classList.remove('green')
     }
   }
 }
