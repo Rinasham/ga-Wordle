@@ -15,6 +15,7 @@ let howManyLetters = 0
 const startBtns = document.getElementsByClassName('startBtn')
 const onscreenStartBtn = document.getElementById('OnscreenStartBtn')
 const keyboardStartBtn = document.getElementById('KeyboardStartBtn')
+const timeLimtStartBtn = document.getElementById('timeLimit-wrapper')
 
 
 // set a question

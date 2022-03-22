@@ -16,7 +16,7 @@ function getAllData(callBack){
     store.getAll().onsuccess = function (data) {
       // rows == object that coutain all data object in DB
       let rows = data.target.result;
-      // console.log(rows.length)
+      console.log(`all data : ${rows.length}`)
       callBack(rows.length) // how many data is in DB?
     }
   }

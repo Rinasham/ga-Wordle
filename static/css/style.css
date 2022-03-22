@@ -113,7 +113,7 @@ input{
 
 
 /* modal */
-#modal-wrapper{
+.wrapper{
   position: fixed;
   top: 0;
   right: 0;
@@ -197,4 +197,29 @@ span {
 
 .percentage {
   margin: 0 15px;
+}
+
+/* modal for time limit */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]:focus {
+  outline: 0;
+}
+
+input {
+  border: solid 3px grey;
+}
+
+#timeLimitModeStartBtn {
+  border: none;
+  font-size: 18px;
+  padding: 0.8rem 2rem;
+  margin: 0 30px;
+  font-family: 'Bungee', cursive;
+  background-color: grey;
+  color: #ffffff;
 }

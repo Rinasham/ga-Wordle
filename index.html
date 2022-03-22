@@ -14,10 +14,29 @@
 </head>
 <body>
   <h1>Wordle</h1>
+  <p id="timer" style="height: 20px; font-size: 25px;"></p>
   <div id="startArea">
     <button id="OnscreenStartBtn" class="startBtn">ONSCREEN KEYBOARD</button>
     <button id="KeyboardStartBtn" class="startBtn">KEYBOARD</button>
+    <button id="timeLimitStartBtn" class="startBtn">KEYBOARD<br/>WITH TIME LIMIT</button>
   </div>
+
+  <!-- modal for input time limit-->
+  <div id="timeLimit-wrapper" class="wrapper">
+    <div class="modal-box">
+      <p>INPUT TIME LIMIT<br/>(SECONDS)</p>
+      <div id="timeSetting">
+        <input type="number" id="time">
+        <button id="timeLimitModeStartBtn">START</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
   <div id="gameArea">
     <div class="boxes">
       <div class="rows" id='row1'>
@@ -113,7 +132,7 @@
 
 
   <!-- modal -->
-  <div id="modal-wrapper">
+  <div id="modal-wrapper" class="wrapper">
     <div class="modal-box">
       <div id="close-modal">
         <i class="fa fa-2x fa-times"></i>
@@ -188,9 +207,11 @@
   <script src="js/clearBoxes.js"></script>
   <script src="js/finish.js"></script>
   <script src="js/checkAnswer.js"></script>
-  <script src="js/script.js"></script>
+
   <script src="js/gameMode/onscreenGame.js"></script>
   <script src="js/gameMode/keyDownGame.js"></script>
+  <script src="js/gameMode/timeLimit.js"></script>
+  <script src="js/script.js"></script>
   <script src="js/checkAnswer.js"></script>
         <!-- script for DB -->
   <script src="js/DB/globalVal.js"></script>

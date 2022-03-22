@@ -18,7 +18,7 @@ function keydownEvent(){
           howManyLetters -= 1
           guessesArr[answerCount] = guessesArr[answerCount].slice(0, -1)
         }
-      } else if (e.code = 'Enter'){
+      } else if (e.code === 'Enter'){
         if(howManyLetters === 5){
           checkAnswer(guessesArr[answerCount])
           // 次の行に移動
@@ -30,6 +30,8 @@ function keydownEvent(){
 
           if (answerCount === 6){
             finish('lose')
+            // タイマーを止める
+            // clearInterval(countdown)
           }
         } else {
           document.querySelector('h4').style.display = 'block'

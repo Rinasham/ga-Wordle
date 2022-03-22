@@ -36,21 +36,43 @@ function startGame(startBtn){
   // accept keypress
   state = !state
   if (startBtn === 'OnscreenStartBtn'){
-    document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
-    document.getElementById('onscreenArea').style.display = 'block'
+    showOnscreen()
     onScreen()
-  } else {
-    document.querySelector('h3').animate([{opacity: '0'}, {opacity: '1'}], 500)
-    document.querySelector('h3').style.display = 'block'
-    document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
-    document.getElementById('onscreenArea').style.display = 'block'
+  } else if(startBtn === 'KeyboardStartBtn'){
+    showKeydown()
     keydownEvent()
+  } else {
+    document.getElementById('timeLimit-wrapper').animate([{opacity: '0'}, {opacity: '1'}], 500)
+    document.getElementById('timeLimit-wrapper').style.display = 'block'
+    document.getElementById('time').focus()
+    document.addEventListener('keydown', function(e){
+      if(e.code === 'Enter'){
+        if(!document.getElementById('time').value == ''){
+          startTimeLimitMode()
+        }
+
+      }
+    })
   }
 }
 
 
 
+// -----------------------------------------------------
 
+// show each game area
+
+function showOnscreen(){
+  document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
+  document.getElementById('onscreenArea').style.display = 'block'
+}
+
+function showKeydown(){
+  document.querySelector('h3').animate([{opacity: '0'}, {opacity: '1'}], 500)
+  document.querySelector('h3').style.display = 'block'
+  document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
+  document.getElementById('onscreenArea').style.display = 'block'
+}
 
 
 

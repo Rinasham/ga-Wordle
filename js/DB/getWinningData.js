@@ -1,5 +1,5 @@
 const winCursorArr = []
-// let arrLength = 0
+
 function getWinData(allDataCount, callBack){
   let database = indexedDB.open(dbName);
   database.onsuccess = function (event) {

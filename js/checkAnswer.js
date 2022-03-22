@@ -55,6 +55,7 @@ function checkAnswer(guess){
     }
     let correctAnswersNum = document.getElementsByClassName('green')
     if (correctAnswersNum.length === 5){
+      // clearInterval(countdown)
       finish('win')
     }
   }
