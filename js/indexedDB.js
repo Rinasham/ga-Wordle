@@ -77,11 +77,11 @@ function insertData (turn, result) {
     let transaction = db.transaction(storeName, "readwrite")
     // if successful
     transaction.oncomplete = function (event) {
-        console.log("トランザクション完了");
+        console.log("トランザクション完了 transaction completed");
     }
     // if fail
     transaction.onerror = function (event) {
-        console.log("トランザクションエラー");
+        console.log("トランザクションエラー transaction error");
     }
 
     // assign objectStore to a variable
@@ -90,10 +90,10 @@ function insertData (turn, result) {
     console.log(data)
     let addData = store.add(data);
     addData.onsuccess = function () {
-        console.log("データが登録できました");
+        console.log("データが登録できました data was inserted");
     }
     addData.onerror = function () {
-        console.log("データが登録できませんでした");
+        console.log("データが登録できませんでした could not insert the data");
     }
     db.close()
   }
@@ -107,31 +107,31 @@ function getPastRecords(allDataCount){
     // コールバック？？
     //トランザクションに対してイベントを登録する
     transaction.addEventListener("complete",function(e){
-      console.log("トランザクションが終了しました。");
-      console.log(pastArr)
-      // 何ターンでクリアしてきたかを保持している配列
-      const turnsRecordArr = [0,0,0,0,0,0]
+      console.log("トランザクションが終了しました。Transaction done");
+      // console.log(pastArr) // array of in what turn user finished in each game
+      const turnsRecordArr = [0,0,0,0,0,0] // each element means how many times the user has won in that turn
 
       for (let recordOfTurn of pastArr){
         if (recordOfTurn < 7){
           turnsRecordArr[recordOfTurn - 1] = turnsRecordArr[recordOfTurn - 1] + 1
-          console.log(turnsRecordArr[recordOfTurn])
+          // console.log(turnsRecordArr[recordOfTurn])
         }
       }
-      console.log(turnsRecordArr)
-      let distributionCount = document.getElementsByClassName('count')
-      let percentageArea = document.getElementsByClassName('percentage')
-      console.log()
+      // console.log(turnsRecordArr)
+      let distributionCounts = document.getElementsByClassName('count')
+      let percentageAreas = document.getElementsByClassName('percentage')
+      // console.log()
       let distributionChart = document.getElementsByClassName('bar')
-      console.log(distributionCount)
-      for (let i=0; i<distributionCount.length; i++) {
-        distributionCount[i].textContent = turnsRecordArr[i]
+      // console.log(distributionCounts)
+      for (let i=0; i<distributionCounts.length; i++) {
+        distributionCounts[i].textContent = turnsRecordArr[i]
         // change percentage chart
         let percentage = Math.trunc(turnsRecordArr[i] / allDataCount * 100)
-        console.log(percentage)
+        // console.log(typeof percentage)
+        // console.log(percentage)
         distributionChart[i].style.width = `${percentage}%`
         // show percentage next to the chart
-        percentageArea[i].textContent = `${percentage}%`
+        percentageAreas[i].textContent = `${percentage}%`
       }
 
     });
@@ -139,15 +139,16 @@ function getPastRecords(allDataCount){
     // store = table
     let store = transaction.objectStore(storeName);
     const request = store.index('turnIndex').openCursor(null, 'next')
-    const pastArr = []
+    const pastArr = [] // array of in what turn user finished in each game
     request.onsuccess = function (e) {
       const cursor = request.result
       if (cursor){
         pastArr.push(cursor.value.turn)
         cursor.continue();
       } else {
-        console.log('検索終了');
+        console.log('検索終了 search done');
       }
+      db.close()
     }
   }
 }
@@ -197,7 +198,7 @@ function getWinData(allDataCount, callBack){
         // console.log('検索結果:', cursor.value);
         cursor.continue();
       } else {
-        console.log('検索終了');
+        console.log('検索終了 serch done');
         // console.log(cursorArr)
         callBack(winCursorArr, allDataCount)
       }
@@ -216,7 +217,7 @@ function getWinData(allDataCount, callBack){
 // callback functions
 //all data
 function callback1(allDataCount){
-  console.log(allDataCount)
+  console.log(`the number of total data is !{allDataCount}`)
   getWinData(allDataCount, callback2)
 }
 
@@ -232,10 +233,9 @@ function callback2(callbackArr,allDataCount){
   getPastRecords(allDataCount)
 
   // open modal
-  console.log('モーダルオープン')
+  console.log('モーダルオープン open modal')
   document.getElementById('modal-wrapper').style.display = 'block'
   document.getElementById('modal-wrapper').animate([{opacity: '0'}, {opacity: '1'}], 500)
-
 }
 
 
