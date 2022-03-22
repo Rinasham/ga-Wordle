@@ -128,7 +128,6 @@ function getPastRecords(allDataCount){
         // change percentage chart
         let percentage = Math.trunc(turnsRecordArr[i] / allDataCount * 100)
         // console.log(typeof percentage)
-        // console.log(percentage)
         distributionChart[i].style.width = `${percentage}%`
         // show percentage next to the chart
         percentageAreas[i].textContent = `${percentage}%`
@@ -225,7 +224,8 @@ function callback1(allDataCount){
 function callback2(callbackArr,allDataCount){
   console.log(`win gameは${callbackArr.length}, all gameは${allDataCount}`)
   let winningRate = Math.trunc(callbackArr.length / allDataCount * 100)
-
+  console.log(`won games ${callbackArr.length}`)
+  console.log(`all games ${allDataCount}`)
 
   document.getElementById('gameCount').textContent = allDataCount
   document.getElementById('winRate').textContent = winningRate
