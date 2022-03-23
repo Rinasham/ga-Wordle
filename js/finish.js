@@ -5,8 +5,12 @@
 function finish(result){
   state = !state
 
+  // streak
+  console.log(`streak is ${prevStreak}. Added 1 as you won this game.`)
+
+
   // call function that insert data
-  register(result)
+  register(result, prevStreak)
   // get past records and calculate winning rate, etc
   getAllData(callback1)
 
@@ -54,9 +58,10 @@ function finish(result){
 
 
 // CALLED BY 'finish()'
-function register(result){
+function register(result, streak){
   let turn = answerCount + 1
   let winOrLose = result
-  insertData(turn, winOrLose)
+  let currentStreak = streak
+  insertData(turn, winOrLose, currentStreak)
 }
 

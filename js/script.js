@@ -1,6 +1,10 @@
 
 // main
-function main () {
+function main (streak) {
+  // get current streak at the beginning of a game
+  prevStreak = streak
+  console.log(prevStreak)
+
   answerCount = 0
   document.getElementById('gameArea').style.display = 'none'
   document.getElementById('onscreenArea').style.display = 'none'
@@ -20,7 +24,6 @@ function main () {
   }
 }
 
-main()
 
 
 

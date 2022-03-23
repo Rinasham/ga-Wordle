@@ -29,6 +29,7 @@ function keydownEvent(){
           console.log(`Turn ${answerCount}`)
 
           if (answerCount === 6){
+            prevStreak = 0
             finish('lose')
             // タイマーを止める
             // clearInterval(countdown)

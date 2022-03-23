@@ -5,6 +5,9 @@ const questionsArr = ['quest', 'point', 'imply', 'agile', 'alloy']
 // Boolean 'state' controls the acceptance of keypress
 let state = false
 
+// current streak
+let prevStreak = 0
+
 // Variable for counting HOW MANY TIMES you answered
 let answerCount = 0
 let howManyLetters = 0

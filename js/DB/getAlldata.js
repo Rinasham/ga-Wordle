@@ -21,3 +21,4 @@ function getAllData(callBack){
     }
   }
 }
+// getAllData()

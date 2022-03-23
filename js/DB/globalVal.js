@@ -1,3 +1,3 @@
 const dbName = 'wordleDB'
 const storeName = 'wordleStore'
-const dbVersion = 3
+const dbVersion = 5

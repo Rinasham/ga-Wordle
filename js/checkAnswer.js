@@ -61,6 +61,7 @@ function checkAnswer(guess){
   let correctAnswersNum = document.getElementsByClassName('green')
   if (correctAnswersNum.length === 5){
     timerFlag = !timerFlag
+    prevStreak += 1
     finish('win')
   } else {
     for(let i=0; i<guess.length; i++){

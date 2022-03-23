@@ -1,14 +1,17 @@
 
 // INSERT DATA
-function insertData (turn, result) {
+function insertData (turn, result, streak) {
   // get current dateTime to make an unique ID for the data
   // convert the dateTime to Strings to insert into the DB
   let uniqueID = new Date().getTime().toString();
+
   // create data object with unique ID
   let data = {
     id : uniqueID,
     turn : turn,
-    result : result
+    result : result,
+    streak : streak,
+    date : new Date()
   }
 
   // open DB

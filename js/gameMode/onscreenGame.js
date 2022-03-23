@@ -19,6 +19,7 @@ function onScreen(){
           answerCount += 1
           console.log(answerCount)
           if (answerCount === 6){
+            prevStreak = 0
             finish('lose')
             state = !state
           }

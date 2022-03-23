@@ -20,6 +20,14 @@ database.onupgradeneeded = function (event) {
     unique:false,	// multiple data can have the same result
     multiEntry:false,	// data can't have both 'win' and 'lose'
   });
+  table.createIndex('streakIndex', 'streak', {
+    unique: false,
+    multiEntry: false,
+  })
+  table.createIndex('dateIndex', 'date', {
+    unique: false,
+    multiEntry: false,
+  })
   console.log("データベースを新規作成しました");
 }
 

@@ -25,6 +25,7 @@ function callback2(callbackArr,allDataCount){
 
   document.getElementById('gameCount').textContent = allDataCount
   document.getElementById('winRate').textContent = winningRate
+  document.getElementById('current-streak').textContent = prevStreak
 
   getPastRecords(allDataCount)
 
