@@ -1,4 +1,4 @@
-function getCurrentStreak(callBack, allGameCount){
+function getLastLoseGame(callBack, allGameCount){
   let database = indexedDB.open(dbName)
   database.onsuccess = function (event) {
     let db = event.target.result;
@@ -36,7 +36,7 @@ function getCurrentStreak(callBack, allGameCount){
 }
 
 // call it when the page is loaded
-// getCurrentStreak(getStreak)
+// getLastLoseGame(getStreak)
 
 
 

@@ -12,9 +12,11 @@ function startTimer(){
   timerFlag = !timerFlag
   const countdown = setInterval(function() {
     timer.textContent = --TIME + ' SECONDS'
-    if(TIME <= 0 || timerFlag == false) {
+    if(TIME <= 0) {
         clearInterval(countdown)
         finish('lose')
+    } else if(timerFlag == false){
+      clearInterval(countdown)
     }
   }, 1000)
 }

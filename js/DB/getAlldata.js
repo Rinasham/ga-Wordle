@@ -29,4 +29,4 @@ function getAllData(callBack){
 }
 
 /// This is the start of game
-getAllData(getCurrentStreak)
+getAllData(getLastLoseGame)

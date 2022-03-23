@@ -57,6 +57,7 @@ const StartTimerWithEnterBtn = function(e){
   if(e.code === 'Enter'){
     if(!document.getElementById('time').value == ''){
       startTimeLimitMode()
+      console.log('timer発動')
       document.removeEventListener('keydown', StartTimerWithEnterBtn)
     }
   }
