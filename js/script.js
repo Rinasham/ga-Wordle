@@ -5,10 +5,9 @@ function main () {
   document.getElementById('gameArea').style.display = 'none'
   document.getElementById('onscreenArea').style.display = 'none'
   document.querySelector('h3').style.display = 'none'
-  document.querySelector('h1').animate([{opacity: '0'}, {opacity: '1'}], 500)
-  document.getElementById('author').animate([{opacity: '0'}, {opacity: '1'}], 500)
-  document.getElementById('startArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
-  document.getElementById('startArea').style.display = 'flex'
+  showTitles()
+  showStartArea()
+  showStartArea()
 
 
 
@@ -28,11 +27,10 @@ main()
 // START GAME
 function startGame(startBtn){
   // change screen
-  // 後でコメントアウト　↓
-  document.getElementById('gameArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
-  document.getElementById('gameArea').style.display = 'block'
+  showGameArea()
+  removeStartArea()
   document.getElementById('author').style.display = 'none'
-  document.getElementById('startArea').style.display = 'none'
+
   // accept keypress
   state = !state
   if (startBtn === 'OnscreenStartBtn'){
@@ -61,21 +59,7 @@ const StartTimerWithEnterBtn = function(e){
 
 
 
-// -----------------------------------------------------
 
-// show each game area
-
-function showOnscreen(){
-  document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
-  document.getElementById('onscreenArea').style.display = 'block'
-}
-
-function showKeydown(){
-  document.querySelector('h3').animate([{opacity: '0'}, {opacity: '1'}], 500)
-  document.querySelector('h3').style.display = 'block'
-  document.getElementById('onscreenArea').animate([{opacity: '0'}, {opacity: '1'}], 500)
-  document.getElementById('onscreenArea').style.display = 'block'
-}
 
 
 

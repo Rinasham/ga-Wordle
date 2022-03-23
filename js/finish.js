@@ -30,28 +30,22 @@ function finish(result){
       guessesArr[i] = ''
     }
     console.log(guessesArr)
-
     console.log(howManyLetters)
-    // console.log(state)
+
     // clear answerCount
     answerCount = 0
     console.log(answerCount)
-    function screenFadeOut(){
-      let screen = document.body
-      screen.animate([{opacity: '1'}, {opacity: '0'}], 500) // ~ 1000ms
-    }
-    setTimeout(screenFadeOut, 600) // ~ 1000ms
     function invisibleGameArea(){
-      document.getElementById('gameArea').style.display = 'none'
-      document.getElementById('onscreenArea').style.display = 'none'
-      document.querySelector('h1').style.display = 'none'
-      document.querySelector('h3').style.display = 'none'
+      document.getElementById('gameArea').animate([{opacity: '1'}, {opacity: '0'}], 500)
+      document.querySelector('h1').animate([{opacity: '1'}, {opacity: '0'}], 500)
+      document.getElementById('onscreenArea').animate([{opacity: '1'}, {opacity: '0'}], 500)
+      document.querySelector('h3').animate([{opacity: '1'}, {opacity: '0'}], 500)
     }
-    setTimeout(invisibleGameArea, 1080) // ~ 1000ms
+    setTimeout(invisibleGameArea, 680) // ~ 1000ms
     function reload(){
       document.location.reload()
     }
-    setTimeout(reload, 1200)
+    setTimeout(reload, 800)
   })
 }
 
