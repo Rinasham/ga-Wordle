@@ -4,7 +4,7 @@
 
 function finish(result){
   state = !state
-  timerFlag = !timerFlag
+  timerFlag = false
 
   // streak
   console.log(`streak is ${prevStreak}. Added 1 as you won this game.`)

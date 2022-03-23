@@ -3,6 +3,7 @@
 // GET DATA FROM DB
 function getAllData(callBack){
   let database = indexedDB.open(dbName);
+  console.log('1st time to open DB.')
   database.onsuccess = function (event) {
     let db = event.target.result;
     let transaction = db.transaction(storeName, "readonly");
@@ -25,6 +26,8 @@ function getAllData(callBack){
         callBack(getStreak, rows.length)
       }
     }
+    db.close()
+    console.log('DB closed. 1st time.')
   }
 }
 
