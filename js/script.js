@@ -3,7 +3,7 @@
 function main (streak) {
   // get current streak at the beginning of a game
   prevStreak = streak
-  console.log(prevStreak)
+  console.log(`Your current streak is ${prevStreak}!`)
 
   answerCount = 0
   document.getElementById('gameArea').style.display = 'none'

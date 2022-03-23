@@ -47,7 +47,7 @@ function getStreak(prevLostTime){
   let database = indexedDB.open(dbName)
   database.onsuccess = function (event) {
     console.log('2回目のDBオープン')
-    console.log(prevLostTime)
+    console.log(`The ID of the game you lost is "${prevLostTime}", which means DB doesn't have any data and this is your first game.`)
     let db = event.target.result
     let transaction = db.transaction(storeName, "readonly")
 
@@ -59,11 +59,15 @@ function getStreak(prevLostTime){
     let store = transaction.objectStore(storeName)
     let streak = 0
 
-    let range = store.getAll(IDBKeyRange.lowerBound(prevLostTime, true)) // range to search in
-    range.onsuccess = function(data) {
-      console.log(data.target.result)
-      streak = Object.keys(data.target.result).length
-      console.log(streak)
+    if (typeof prevLostTime === 'undefined'){
+      ;
+    } else {
+      let range = store.getAll(IDBKeyRange.lowerBound(prevLostTime, true)) // range to search in
+      range.onsuccess = function(data) {
+        console.log(data.target.result)
+        streak = Object.keys(data.target.result).length
+        console.log(streak)
+      }
     }
     db.close()
     console.log('DB closed properly. Ready for game!')

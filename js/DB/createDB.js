@@ -6,9 +6,11 @@
 let database = indexedDB.open(dbName, dbVersion);
 
   // create a table (objectStore)
+  // 'onupgradeneeded' will be executed only when DB needs to be updated 
+  // or you don't have DB yet
 database.onupgradeneeded = function (event) {
   let db = event.target.result;
-  // main key = id
+  // primary key = 'id'
   const table = db.createObjectStore(storeName, { keyPath: "id" });
   //create another index (result)
   table.createIndex("resultIndex","result",{
@@ -34,10 +36,10 @@ database.onupgradeneeded = function (event) {
 //データベースに接続に成功した時に発生するイベント
 database.onsuccess = function (event) {
   let db = event.target.result;
-   // 接続を解除する
+  // 接続を解除する
   db.close();
-  console.log("データベースに接続できました。既に閉じています。");
+  console.log("データベースに接続できました。既に閉じています。Checked if there's a DB on your browser. The connection is already closed.");
 }
 database.onerror = function (event) {
-  console.log("データベースに接続できませんでした");
+  console.log("データベースに接続できませんでした。Tried to check if there was a DB but couldn't connect to DB");
 }
