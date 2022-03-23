@@ -214,6 +214,9 @@ input[type="number"]:focus {
 
 input {
   border: solid 3px grey;
+  height: 38px;
+  width: 200px;
+  text-align: center;
 }
 
 #timeLimitModeStartBtn {

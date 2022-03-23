@@ -56,21 +56,11 @@ function checkAnswer(guess){
         }
       }
     }
-    console.log(boxesInRow[i])
-
-    // let correctAnswersNum = document.getElementsByClassName('green')
-    // if (correctAnswersNum.length === 5){
-    //   // clearInterval(countdown)
-    //   finish('win')
-    // } else {
-    //   for(let i=0; i<guess.length; i++){
-    //     boxesInRow[i].classList.remove('green')
-    //   }
-    // }
+    // console.log(boxesInRow[i])
   }
   let correctAnswersNum = document.getElementsByClassName('green')
   if (correctAnswersNum.length === 5){
-    // clearInterval(countdown)
+    timerFlag = !timerFlag
     finish('win')
   } else {
     for(let i=0; i<guess.length; i++){
