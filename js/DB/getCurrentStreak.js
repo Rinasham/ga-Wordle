@@ -1,7 +1,11 @@
-function getCurrentStreak(callBack){
+function getCurrentStreak(callBack, allGameCount){
   let database = indexedDB.open(dbName)
   database.onsuccess = function (event) {
     let db = event.target.result;
+
+
+    // ------------------start of current streak--------------------------
+
     let transaction = db.transaction(storeName, "readonly")
     // コールバック？？
     //トランザクションに対してイベントを登録する
@@ -13,7 +17,7 @@ function getCurrentStreak(callBack){
       db.close()
       console.log(`DB closed.`)
 
-      callBack(prevLostTime)
+      callBack(prevLostTime, allGameCount)
     })
 
     // store = table(objectStore)
@@ -26,24 +30,28 @@ function getCurrentStreak(callBack){
       const cursor = request.result
       if (cursor){
         prevLostTimeArr.push(cursor.value.id)
-        // console.log(e.target.result.value)
-        // console.log('検索結果:', cursor.value);
         cursor.continue();
       } else {
-        console.log('検索終了 serch done');
+        console.log('last time you lost 検索終了 serch done');
       }
+
+      // -----------------end of current streak----------------------
+
+      // -----------------start of max streak----------------------
+
+
+
+      // -----------------end of max streak----------------------
     }
-      // db.close()
-      // console.log(`DB closed.`)
   }
 }
 
 // call it when the page is loaded
-getCurrentStreak(getStreak)
+// getCurrentStreak(getStreak)
 
 
 
-function getStreak(prevLostTime){
+function getStreak(prevLostTime, allGameCount){
   let database = indexedDB.open(dbName)
   database.onsuccess = function (event) {
     console.log('2回目のDBオープン')
@@ -60,7 +68,7 @@ function getStreak(prevLostTime){
     let streak = 0
 
     if (typeof prevLostTime === 'undefined'){
-      ;
+      streak = allGameCount
     } else {
       let range = store.getAll(IDBKeyRange.lowerBound(prevLostTime, true)) // range to search in
       range.onsuccess = function(data) {
@@ -73,3 +81,4 @@ function getStreak(prevLostTime){
     console.log('DB closed properly. Ready for game!')
   }
 }
+

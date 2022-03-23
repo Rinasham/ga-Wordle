@@ -5,33 +5,44 @@
 
 let database = indexedDB.open(dbName, dbVersion);
 
-  // create a table (objectStore)
+  // create a mainTable (objectStore)
   // 'onupgradeneeded' will be executed only when DB needs to be updated 
   // or you don't have DB yet
 database.onupgradeneeded = function (event) {
-  let db = event.target.result;
+  let db = event.target.result
+
   // primary key = 'id'
-  const table = db.createObjectStore(storeName, { keyPath: "id" });
+  const mainTable = db.createObjectStore(storeName, { keyPath: "id" })
   //create another index (result)
-  table.createIndex("resultIndex","result",{
+  mainTable.createIndex("resultIndex","result",{
     unique:false,	// multiple data can have the same result
     multiEntry:false,	// data can't have both 'win' and 'lose'
   });
   // index for turn chart
-  table.createIndex("turnIndex","turn",{
+  mainTable.createIndex("turnIndex","turn",{
     unique:false,	// multiple data can have the same result
     multiEntry:false,	// data can't have both 'win' and 'lose'
   });
-  table.createIndex('streakIndex', 'streak', {
+  mainTable.createIndex('streakIndex', 'streak', {
     unique: false,
     multiEntry: false,
   })
-  table.createIndex('dateIndex', 'date', {
+  mainTable.createIndex('dateIndex', 'date', {
     unique: false,
     multiEntry: false,
   })
-  console.log("データベースを新規作成しました");
+  console.log("データ用のデータベースを新規作成しました");
+
+  // another table for max streak
+  const maxStreakTable = db.createObjectStore(maxStreakStoreName, { keyPath: "id" })
+
 }
+
+
+
+
+
+
 
 //データベースに接続に成功した時に発生するイベント
 database.onsuccess = function (event) {

@@ -16,6 +16,7 @@ function finish(result){
 
   // show modal with results (that code is in indexedDB.js)
 
+
   // make the modal invisible when clicked
   document.getElementById('close-modal').addEventListener('click', function(){
     document.getElementById('modal-wrapper').animate([{opacity: '1'}, {opacity: '0'}], 500)

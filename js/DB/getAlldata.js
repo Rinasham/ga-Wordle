@@ -17,8 +17,14 @@ function getAllData(callBack){
       // rows == object that coutain all data object in DB
       let rows = data.target.result;
       console.log(`all data : ${rows.length}`)
-      callBack(rows.length) // how many data is in DB?
+      if(callBack == 'callback1'){
+        callBack(rows.length) // how many data is in DB?
+      } else {
+        callBack(getStreak, rows.length)
+      }
     }
   }
 }
-// getAllData()
+
+/// This is the start of game
+getAllData(getCurrentStreak)
