@@ -45,14 +45,17 @@ function startGame(startBtn){
     document.getElementById('timeLimit-wrapper').animate([{opacity: '0'}, {opacity: '1'}], 500)
     document.getElementById('timeLimit-wrapper').style.display = 'block'
     document.getElementById('time').focus()
-    document.addEventListener('keydown', function(e){
-      if(e.code === 'Enter'){
-        if(!document.getElementById('time').value == ''){
-          startTimeLimitMode()
-        }
+    // accept Enter button to start a game after setting time limit
+    document.addEventListener('keydown', StartTimerWithEnterBtn)
+  }
+}
 
-      }
-    })
+const StartTimerWithEnterBtn = function(e){
+  if(e.code === 'Enter'){
+    if(!document.getElementById('time').value == ''){
+      startTimeLimitMode()
+      document.removeEventListener('keydown', StartTimerWithEnterBtn)
+    }
   }
 }
 
