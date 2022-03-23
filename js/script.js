@@ -1,9 +1,11 @@
 
 // main
-function main (streak) {
+function main (streakParam, maxStreakParam) {
   // get current streak at the beginning of a game
-  prevStreak = streak
+  prevStreak = streakParam
+  maxStreak = maxStreakParam
   console.log(`Your current streak is ${prevStreak}!`)
+  console.log(`Your max streak is ${maxStreak}!`)
 
   answerCount = 0
   document.getElementById('gameArea').style.display = 'none'

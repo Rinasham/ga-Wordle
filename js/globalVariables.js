@@ -7,6 +7,7 @@ let state = false
 
 // current streak
 let prevStreak = 0
+let maxStreak = 0
 
 // Variable for counting HOW MANY TIMES you answered
 let answerCount = 0

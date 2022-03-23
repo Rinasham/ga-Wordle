@@ -3,9 +3,6 @@ function getCurrentStreak(callBack, allGameCount){
   database.onsuccess = function (event) {
     let db = event.target.result;
 
-
-    // ------------------start of current streak--------------------------
-
     let transaction = db.transaction(storeName, "readonly")
     // コールバック？？
     //トランザクションに対してイベントを登録する
@@ -34,14 +31,6 @@ function getCurrentStreak(callBack, allGameCount){
       } else {
         console.log('last time you lost 検索終了 serch done');
       }
-
-      // -----------------end of current streak----------------------
-
-      // -----------------start of max streak----------------------
-
-
-
-      // -----------------end of max streak----------------------
     }
   }
 }
@@ -60,7 +49,8 @@ function getStreak(prevLostTime, allGameCount){
     let transaction = db.transaction(storeName, "readonly")
 
     transaction.addEventListener("complete",function(e){
-      main(streak)
+      getMaxStreak(streak)
+      // main(streak)
     })
 
     // store = table
@@ -68,6 +58,8 @@ function getStreak(prevLostTime, allGameCount){
     let streak = 0
 
     if (typeof prevLostTime === 'undefined'){
+      // This is for when user hasn't any lost game, which can't calculate the current streak
+      // allGameCount == how many times user has played
       streak = allGameCount
     } else {
       let range = store.getAll(IDBKeyRange.lowerBound(prevLostTime, true)) // range to search in
@@ -76,6 +68,40 @@ function getStreak(prevLostTime, allGameCount){
         streak = Object.keys(data.target.result).length
         console.log(streak)
       }
+    }
+    db.close()
+    console.log('DB for current streak closed properly.')
+  }
+}
+
+
+function getMaxStreak(currentStreak){
+  let database = indexedDB.open(dbName)
+  database.onsuccess = function (event) {
+    console.log('3回目のDBオープン')
+    console.log(currentStreak)
+    let db = event.target.result
+    let transaction = db.transaction(maxStreakStoreName, "readonly")
+
+    transaction.addEventListener("complete",function(e){
+      main(currentStreak, maxStreak)
+    })
+
+    let store = transaction.objectStore(maxStreakStoreName)
+
+    const maxStreakArr = []
+    let maxStreak = 0
+
+    store.getAll().onsuccess = function (data){
+      const dataObj = data.target.result
+      // console.log(dataObj)
+
+      // take max number out of maxStreakArr (that is max streak)
+      for (let i=0; i < dataObj.length; i++){
+        maxStreakArr.push(dataObj[i].maxStreak)
+      }
+      const aryMax = function (a, b) {return Math.max(a, b);}
+      maxStreak = maxStreakArr.reduce(aryMax)
     }
     db.close()
     console.log('DB closed properly. Ready for game!')

@@ -7,7 +7,7 @@ function finish(result){
 
   // streak
   console.log(`streak is ${prevStreak}. Added 1 as you won this game.`)
-
+  biggerThanMaxStreakOrNot()
 
   // call function that insert data
   register(result, prevStreak)
@@ -64,5 +64,16 @@ function register(result, streak){
   let winOrLose = result
   let currentStreak = streak
   insertData(turn, winOrLose, currentStreak)
+}
+
+function biggerThanMaxStreakOrNot(){
+  if (prevStreak > maxStreak){
+    console.log('記録更新ですーー')
+    maxStreak = prevStreak
+    // console.log(maxStreak)
+    insertStreak(prevStreak)
+  } else {
+    console.log('更新じゃないです')
+  }
 }
 

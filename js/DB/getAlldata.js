@@ -17,9 +17,11 @@ function getAllData(callBack){
       // rows == object that coutain all data object in DB
       let rows = data.target.result;
       console.log(`all data : ${rows.length}`)
-      if(callBack == 'callback1'){
+      if(callBack == callback1){
+        console.log(rows.length)
         callBack(rows.length) // how many data is in DB?
       } else {
+        console.log('current streak取得のループを回ってます')
         callBack(getStreak, rows.length)
       }
     }
