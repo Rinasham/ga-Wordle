@@ -1,7 +1,7 @@
-// CHECK THE GUESS
-// THIS FUNCTION IS CALLED EVERYTIME USER PRESS ENTER AT THE END OF EACH ROW
+// // CHECK THE GUESS
+// // THIS FUNCTION IS CALLED EVERYTIME USER PRESS ENTER AT THE END OF EACH ROW
 
-// parameter == user's guess (strings)
+// // parameter == user's guess (strings)
 
 
 
@@ -14,26 +14,25 @@ function checkAnswer(guess){
   } else {
     // 画面にそんなワードは有効じゃないと表示させる
     console.log('そのワードはありません')
+    for (let i=0; i<guess.length; i++){
+      document.getElementById(`row${answerCount + 1}`).children[i].textContent = ''
+      guessesArr[answerCount] = []
+    }
+    answerCount -= 1
+    return
   }
-checkLetters(guess)
 }
 
-const correctLetters = []
+
 const correctKeys = []
 
-// guess == aguessesArr[answerCount]
+// guess == guessesArr[answerCount]
 function checkLetters(guess){
   // 5 boxes in a row
   // the index of a row is `row${answerCount + 1}`(it starts from 1, not 0)
   let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
   // get all keys in onscreen keyboard
   const screenKeys = document.getElementsByClassName('keys')
-
-
-  for (let letter of question){
-    correctLetters.push(letter)
-  }
-  console.log(correctLetters)
 
   // guessを一文字ずつcheck
   function checkGreen(guess){
@@ -44,29 +43,23 @@ function checkLetters(guess){
     }
   }
 
-  // this Set contains characters in answer
-  // but can have less characters than 5
-  const correctLettersSet = new Set([...correctLetters])
-
+  checkGreen(guess)
 
   for (let i=0; i<guess.length; i++){
-    checkGreen(guess)
-
 // 正解の中に含まれているパターン
-    if (correctLettersSet.has(guess[i])){
+    if (question.includes(guess[i])){
       if (question[i] === guess[i]){
         // ボックス緑
         boxesInRow[i].style.backgroundColor = 'rgba(0,128,0,0.75)'
         boxesInRow[i].style.color = 'white'
         boxesInRow[i].classList.add('green')
-        correctLetters.splice(i, 1, '')
+        // correctLetters.splice(i, 1)
         // キーも緑
         for (let key of screenKeys){
           if(key.textContent === guess[i]){
             key.style.backgroundColor = 'rgba(0,128,0,0.75)'
             key.style.color = 'white'
             key.classList.add('greenKey')
-            console.log('グリーーーーーん')
           }
         }
         // 正解arrの中に含まれている、けど順番が違う
@@ -87,25 +80,107 @@ function checkLetters(guess){
       }
       //正解の中に含まれていないパターン
     } else {
-        boxesInRow[i].style.backgroundColor = 'rgba(128,128,128,0.85)'
-        boxesInRow[i].style.color = 'white'
-        for (let key of screenKeys){
-          if(key.textContent === guess[i]){
-            key.style.backgroundColor = 'rgba(128,128,128,0.85)'
-            key.style.color = 'white'
-          }
+      boxesInRow[i].style.backgroundColor = 'rgba(128,128,128,0.85)'
+      boxesInRow[i].style.color = 'white'
+      for (let key of screenKeys){
+        if(key.textContent === guess[i]){
+          key.style.backgroundColor = 'rgba(128,128,128,0.85)'
+          key.style.color = 'white'
         }
+      }
     }
   }
+  console.log()
 
 
   let targetRow = document.getElementById(`row${answerCount + 1}`)
   console.log(answerCount)
   console.log(targetRow)
-  let correctAnswersNum = targetRow.getElementsByClassName('green')
+  let correctAnswersNum = document.getElementsByClassName('green')
   if (correctAnswersNum.length === 5){
     timerFlag = !timerFlag
     prevStreak += 1
     finish('win')
+  } else {
+    for(let i=0; i<guess.length; i++){
+      boxesInRow[i].classList.remove('green')
+    }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function checkAnswer(guess){
+//   // 5 boxes in a row
+//   // the index of a row is `row${answerCount + 1}`(it starts from 1, not 0)
+//   let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
+//   // get all keys in onscreen keyboard
+//   const screenKeys = document.getElementsByClassName('keys')
+
+
+//   // guessを一文字ずつcheck
+//   for (let i=0; i<guess.length; i++){
+//     // Is that letter included?
+//     if(!question.includes(guess[i])){
+//       boxesInRow[i].style.backgroundColor = 'rgba(128,128,128,0.85)'
+//       boxesInRow[i].style.color = 'white'
+//       for (let key of screenKeys){
+//         if(key.textContent === guess[i].toUpperCase()){
+//           key.style.backgroundColor = 'rgba(128,128,128,0.85)'
+//           key.style.color = 'white'
+//         }
+//       }
+//     } else {
+//       // Is position correct?
+//       if (question[i] === boxesInRow[i].textContent){
+//         boxesInRow[i].style.backgroundColor = 'rgba(0,128,0,0.75)'
+//         boxesInRow[i].style.color = 'white'
+//         boxesInRow[i].classList.add('green')
+//         console.log(boxesInRow[i])
+//         for (let key of screenKeys){
+//           // console.log(key.textContent)
+//           if(key.textContent === guess[i].toUpperCase()){
+//             key.style.backgroundColor = 'rgba(0,128,0,0.75)'
+//             key.style.color = 'white'
+//           }
+//         }
+//       } else {
+//         // if(boxesInRow[i].classList.contains('green') == true){
+//         //   boxesInRow[i].classList.remove('green')
+//         // }
+//         boxesInRow[i].style.backgroundColor = 'rgba(241,202,43,0.85)'
+//         boxesInRow[i].style.color = 'white'
+//         for (let key of screenKeys){
+//           if(key.textContent === guess[i].toUpperCase()){
+//             // console.log(key.style.backgroundColor)
+//             if(key.style.backgroundColor === 'rgba(128,128,128,0.85)' || !key.style.backgroundColor){
+//               key.style.backgroundColor = 'rgba(241,202,43,0.85)'
+//               key.style.color = 'white'
+//             }
+//           }
+//         }
+//       }
+//     }
+//     // console.log(boxesInRow[i])
+//   }
+//   let correctAnswersNum = document.getElementsByClassName('green')
+//   if (correctAnswersNum.length === 5){
+//     timerFlag = !timerFlag
+//     prevStreak += 1
+//     finish('win')
+//   } else {
+//     for(let i=0; i<guess.length; i++){
+//       boxesInRow[i].classList.remove('green')
+//     }
+//   }
+// }
