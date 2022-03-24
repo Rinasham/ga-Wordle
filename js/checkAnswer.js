@@ -6,12 +6,25 @@
 
 
 function checkAnswer(guess){
+
+
+  // validation
+  console.log(guess.toUpperCase())
+  if (validWordsSet.has(guess.toUpperCase())){
+    console.log('そのワードあるよ')
+    checkLetters(guess)
+  } else {
+    // 画面にそんなワードは有効じゃないと表示させる
+    console.log('そのワードはありません')
+  }
+}
+
+function checkLetters(guess){
   // 5 boxes in a row
   // the index of a row is `row${answerCount + 1}`(it starts from 1, not 0)
   let boxesInRow = document.getElementById(`row${answerCount + 1}`).children
   // get all keys in onscreen keyboard
   const screenKeys = document.getElementsByClassName('keys')
-
 
   // guessを一文字ずつcheck
   for (let i=0; i<guess.length; i++){
@@ -31,7 +44,7 @@ function checkAnswer(guess){
         boxesInRow[i].style.backgroundColor = 'rgba(0,128,0,0.75)'
         boxesInRow[i].style.color = 'white'
         boxesInRow[i].classList.add('green')
-        console.log(boxesInRow[i])
+        // console.log(boxesInRow[i])
         for (let key of screenKeys){
           // console.log(key.textContent)
           if(key.textContent === guess[i].toUpperCase()){

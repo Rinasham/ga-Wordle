@@ -14,7 +14,7 @@
 </head>
 <body>
   <h1>Wordle</h1>
-  <p id="timer" style="height: 20px; font-size: 25px;"></p>
+  <p id="timer" style="height: 25px; font-size: 25px; margin: 5px;"></p>
   <div id="startArea">
     <button id="OnscreenStartBtn" class="startBtn">ONSCREEN KEYBOARD</button>
     <button id="KeyboardStartBtn" class="startBtn">KEYBOARD</button>
@@ -91,7 +91,7 @@
     </h2> -->
   </div>
 
-  <div id="onscreenArea" style="margin: 40px;">
+  <div id="onscreenArea" style="margin: 10px;">
     <div class="keyboardRows" id="keyboardRow1">
       <button data-letter="q" class="keys">Q</button>
       <button data-letter="w" class="keys">W</button>
@@ -203,6 +203,7 @@
 
 <!-- JavaScript from here-->
         <!-- script for game -->
+  <script src="js/validWords.js"></script>
   <script src="js/globalVariables.js"></script>
   <script src="js/showParts.js"></script>
   <script src="js/clearBoxes.js"></script>

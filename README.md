@@ -2,6 +2,7 @@
 General assembly Project 1 : **Wordle**
 
 ![img](static/imgs/wordle.png)
+
 Here's the popular game Wordle by RINA, with additional time limit mode.
 Hosted on Github pages [here](https://rinasham.github.io/ga-Wordle/)!
 
@@ -14,4 +15,6 @@ It's still in development. < under construction~~
 - More CSS animations
 - Expansion in questions
 - Sound effects
+- Instruction of how to play game
+- Dark Theme
 

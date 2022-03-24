@@ -9,8 +9,12 @@ body{
 
 /* start */
 
+h1 {
+  margin-bottom: 10px;
+}
+
 #startArea{
-  min-height: 700px;
+  min-height: 680px;
   display: flex;
   flex-direction: column;
   justify-content: center;
