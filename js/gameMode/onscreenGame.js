@@ -38,9 +38,9 @@ function onScreen(){
         // 文字がアルファベットだった時の処理
         if(howManyLetters < 5) {
           console.log(key.dataset['letter'])
-          boxesInRow.children[howManyLetters].textContent = key.dataset['letter']
+          boxesInRow.children[howManyLetters].textContent = key.dataset['letter'],toUpperCase()
           howManyLetters += 1
-          guessesArr[answerCount] += key.dataset['letter']
+          guessesArr[answerCount] += key.dataset['letter'].toUpperCase()
           console.log(guessesArr)
         }
       }

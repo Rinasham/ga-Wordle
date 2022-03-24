@@ -1,6 +1,6 @@
 const guessesArr = ['','','','','','']
 
-const questionsArr = ['quest', 'point', 'imply', 'agile', 'alloy']
+// const questionsArr = ['quest', 'point', 'imply', 'agile', 'alloy']
 
 // Boolean 'state' controls the acceptance of keypress
 let state = false
@@ -35,6 +35,8 @@ console.log(`Question is ${question}`) // 後でコメントアウト
 
 // CREATE QUESTIONS
 function createQuestion(){
+  // change Set into Array
+  const questionsArr = [...validWordsSet]
   let rnd = Math.floor(Math.random() * questionsArr.length);
   let question = questionsArr[rnd]
   return question

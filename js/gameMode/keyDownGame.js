@@ -8,9 +8,11 @@ function keydownEvent(){
       let boxesInRow = document.getElementById(`row${answerCount + 1}`)
       if (e.code.startsWith('Key')){
         if(howManyLetters < 5) {
-          boxesInRow.children[howManyLetters].textContent = e.key
+          boxesInRow.children[howManyLetters].textContent = e.key.toUpperCase()
           howManyLetters += 1
-          guessesArr[answerCount] += e.key
+          let correctLetterGuess = e.key.toUpperCase()
+          guessesArr[answerCount] += correctLetterGuess
+          console.log(correctLetterGuess)
         }
       } else if(e.key === 'Backspace'){
         if (0 < howManyLetters.length < 5){
