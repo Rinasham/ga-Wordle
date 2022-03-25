@@ -33,8 +33,6 @@ function keydownEvent(){
           if (answerCount === 6){
             prevStreak = 0
             finish('lose')
-            // タイマーを止める
-            // clearInterval(countdown)
           }
         } else {
           document.querySelector('h4').style.display = 'block'
