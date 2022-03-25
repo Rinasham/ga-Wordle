@@ -15,9 +15,7 @@ function onScreen(){
           checkAnswer(guessesArr[answerCount])
           // 次の行に移動
           howManyLetters = 0
-          // how many times has the user guessed? + 1
-          answerCount += 1
-          console.log(answerCount)
+
           if (answerCount === 6){
             prevStreak = 0
             finish('lose')
@@ -26,6 +24,10 @@ function onScreen(){
         } else {
           document.querySelector('h4').style.display = 'block'
         }
+                // how many times has the user guessed? + 1
+                answerCount += 1
+                console.log(`Turn ${answerCount}`)
+
         // Backspace
       } else if (key.dataset['letter'] === 'backspace'){
         if (0 < howManyLetters.length < 5){
