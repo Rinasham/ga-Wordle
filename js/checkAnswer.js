@@ -3,7 +3,8 @@
 
 // // parameter == user's guess (strings)
 
-
+const countCharacters = {}// key${guess[i]}
+const exsistingLetters = []
 
 function checkAnswer(guess){
   // validation 後でコメントアウト戻す
@@ -26,6 +27,8 @@ function checkAnswer(guess){
 
 const correctKeys = []
 
+
+
 // guess == guessesArr[answerCount]
 function checkLetters(guess){
   // 5 boxes in a row
@@ -45,6 +48,52 @@ function checkLetters(guess){
 
   checkGreen(guess)
 
+  // ------------------------
+
+  if(answerCount == 0){
+    for (let i=0; i< question.length; i++){
+      if(!exsistingLetters.includes(question[i])){
+        exsistingLetters.push(question[i])
+      }
+    }
+  }
+    for (let i=0; i<exsistingLetters.length; i++){
+      let count = 0
+      for (let j=0; j<question.length; j++){
+        if(exsistingLetters[i] == question[j]){
+          count++
+        }
+        countCharacters[`key${exsistingLetters[i]}`] = count
+      }
+    }
+    console.log(countCharacters)
+  // }
+
+/////
+
+  for (let i=0; i<exsistingLetters.length; i++){
+    let greenCount = 0
+    for (let j=0; j<guess.length; j++){
+      if(guess[j] == exsistingLetters[i] && boxesInRow[j].textContent == question[j]){
+        greenCount++
+      }
+      // countCharacters[`key${exsistingLetters[i]}`] -= greenCount
+    }
+    if(countCharacters[`key${exsistingLetters[i]}`] > 0){
+      countCharacters[`key${exsistingLetters[i]}`] -= greenCount
+    }
+  }
+
+  console.log(countCharacters)
+
+
+  // ------------------------
+
+
+
+
+
+
   for (let i=0; i<guess.length; i++){
 // 正解の中に含まれているパターン
     if (question.includes(guess[i])){
@@ -53,7 +102,7 @@ function checkLetters(guess){
         boxesInRow[i].style.backgroundColor = 'rgba(0,128,0,0.75)'
         boxesInRow[i].style.color = 'white'
         boxesInRow[i].classList.add('green')
-        // correctLetters.splice(i, 1)
+        countCharacters[`key{guess[i]}`] -= 1
         // キーも緑
         for (let key of screenKeys){
           if(key.textContent === guess[i]){
@@ -64,9 +113,15 @@ function checkLetters(guess){
         }
         // 正解arrの中に含まれている、けど順番が違う
       } else {
+        // 正解に含まれてるがもう残ってない
+        if(countCharacters[`key${guess[i]}`] > 0){
         // ボックスは黄色
         boxesInRow[i].style.backgroundColor = 'rgba(241,202,43,0.85)'
         boxesInRow[i].style.color = 'white'
+        } else {
+          boxesInRow[i].style.backgroundColor = 'rgba(128,128,128,0.85)'
+          boxesInRow[i].style.color = 'white'
+        }
         for (let key of screenKeys){
           if(key.textContent === guess[i]){
             if(key.classList.contains('greenKey')){
