@@ -7,21 +7,22 @@ const countCharacters = {}// key${guess[i]}
 const exsistingLetters = []
 
 function checkAnswer(guess){
-  // validation 後でコメントアウト戻す
-  console.log(guess.toUpperCase())
-  if (validWordsSet.has(guess.toUpperCase())){
-    console.log('そのワードあるよ')
-    checkLetters(guess)
-  } else {
-    // 画面にそんなワードは有効じゃないと表示させる
-    console.log('そのワードはありません')
-    for (let i=0; i<guess.length; i++){
-      document.getElementById(`row${answerCount + 1}`).children[i].textContent = ''
-      guessesArr[answerCount] = []
-    }
-    answerCount -= 1
-    return
-  }
+  // // validation 後でコメントアウト戻す
+  // console.log(guess.toUpperCase())
+  // if (validWordsSet.has(guess.toUpperCase())){
+  //   console.log('そのワードあるよ')
+  //   checkLetters(guess)
+  // } else {
+  //   // 画面にそんなワードは有効じゃないと表示させる
+  //   console.log('そのワードはありません')
+  //   for (let i=0; i<guess.length; i++){
+  //     document.getElementById(`row${answerCount + 1}`).children[i].textContent = ''
+  //     guessesArr[answerCount] = []
+  //   }
+  //   answerCount -= 1
+  //   return
+  // }
+  checkLetters(guess)
 }
 
 

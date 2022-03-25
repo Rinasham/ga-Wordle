@@ -91,6 +91,7 @@ function register(result, streak){
   let turn = answerCount + 1
   let winOrLose = result
   let currentStreak = streak
+  console.log(currentStreak)
   insertData(turn, winOrLose, currentStreak)
 }
 

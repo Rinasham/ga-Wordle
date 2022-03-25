@@ -231,7 +231,7 @@ input{
   display: none;
 }
 
-#modal-box {
+.modal-box {
   position: absolute;
   top: 20%;
   left: 34%;

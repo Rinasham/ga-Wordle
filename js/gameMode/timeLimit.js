@@ -13,8 +13,9 @@ function startTimer(){
   const countdown = setInterval(function() {
     timer.textContent = --TIME + ' SECONDS'
     if(TIME <= 0) {
-        clearInterval(countdown)
-        finish('lose')
+      prevStreak = 0
+      clearInterval(countdown)
+      finish('lose')
     } else if(timerFlag == false){
       clearInterval(countdown)
     }
