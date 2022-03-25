@@ -4,6 +4,7 @@ function keydownEvent(){
 
   function keyDown(e) {
       if(!state) return
+      answerFlag = false
       document.querySelector('h4').style.display = 'none'
       let boxesInRow = document.getElementById(`row${answerCount + 1}`)
       if (e.code.startsWith('Key')){
@@ -25,17 +26,20 @@ function keydownEvent(){
           checkAnswer(guessesArr[answerCount])
           // 次の行に移動
           howManyLetters = 0
+          console.log(answerFlag)
 
-          if (answerCount === 6){
+        // how many times has the user guessed? + 1
+          answerCount += 1
+          console.log(`Turn ${answerCount}`)
+        
+          if (answerCount === 6 && answerFlag == true){
+            console.log(answerFlag)
             prevStreak = 0
             finish('lose')
           }
         } else {
           document.querySelector('h4').style.display = 'block'
         }
-        // how many times has the user guessed? + 1
-        answerCount += 1
-        console.log(`Turn ${answerCount}`)
       }
   }
 }

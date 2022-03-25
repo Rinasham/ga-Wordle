@@ -146,22 +146,23 @@ function checkLetters(guess){
       }
     }
   }
-  console.log()
 
 
-  let targetRow = document.getElementById(`row${answerCount + 1}`)
-  console.log(answerCount)
-  console.log(targetRow)
+  // let targetRow = document.getElementById(`row${answerCount + 1}`)
+  // console.log(answerCount)
+  // console.log(targetRow)
   let correctAnswersNum = document.getElementsByClassName('green')
   if (correctAnswersNum.length === 5){
     timerFlag = !timerFlag
     prevStreak += 1
     finish('win')
   } else {
+    answerFlag = true
     for(let i=0; i<guess.length; i++){
       boxesInRow[i].classList.remove('green')
     }
   }
+
 }
 
 

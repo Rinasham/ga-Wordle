@@ -1,7 +1,7 @@
 // FOR ONSCREEN KEYBOARD INPUT
 function onScreen(){
   if(!state) return
-
+  answerFlag = false
   const keys = document.getElementsByClassName('keys')
 
   for (let key of keys){
@@ -16,7 +16,11 @@ function onScreen(){
           // 次の行に移動
           howManyLetters = 0
 
-          if (answerCount === 6){
+          // how many times has the user guessed? + 1
+          answerCount += 1
+          console.log(`Turn ${answerCount}`)
+
+          if (answerCount === 6 && answerFlag == true){
             prevStreak = 0
             finish('lose')
             state = !state
@@ -24,9 +28,7 @@ function onScreen(){
         } else {
           document.querySelector('h4').style.display = 'block'
         }
-                // how many times has the user guessed? + 1
-                answerCount += 1
-                console.log(`Turn ${answerCount}`)
+
 
         // Backspace
       } else if (key.dataset['letter'] === 'backspace'){

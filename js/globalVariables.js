@@ -13,6 +13,8 @@ let maxStreak = 0
 let answerCount = 0
 let howManyLetters = 0
 
+let answerFlag = false
+
 
 
 // start buttons variable
