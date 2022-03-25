@@ -22,37 +22,64 @@ function finish(result){
   document.getElementById('close-modal').addEventListener('click', function(){
     document.getElementById('modal-wrapper').animate([{opacity: '1'}, {opacity: '0'}], 500)
     setTimeout(fadeoutModal, 500)
-    function fadeoutModal(){
-      document.getElementById('modal-wrapper').style.display = 'none'
-    }
-    clearBoxes()
-    // set question
-    const question = createQuestion()
-    console.log(`Question is ${question}`)
-
-    // reset arr
-    // guessesArr = ['','','','','']
-    for (let i=0; i< guessesArr.length ; i++) {
-      guessesArr[i] = ''
-    }
-    console.log(guessesArr)
-    console.log(howManyLetters)
-
-    // clear answerCount
-    answerCount = 0
-    console.log(answerCount)
-    function invisibleGameArea(){
-      document.getElementById('gameArea').animate([{opacity: '1'}, {opacity: '0'}], 500)
-      document.querySelector('h1').animate([{opacity: '1'}, {opacity: '0'}], 500)
-      document.getElementById('onscreenArea').animate([{opacity: '1'}, {opacity: '0'}], 500)
-      document.querySelector('h3').animate([{opacity: '1'}, {opacity: '0'}], 500)
-    }
-    setTimeout(invisibleGameArea, 680) // ~ 1000ms
-    function reload(){
-      document.location.reload()
-    }
-    setTimeout(reload, 800)
+    restart()
   })
+
+  // also able to close modal by clicking anywhere exccept the box area inside
+  document.getElementById('modal-wrapper').addEventListener('click', function(){
+    console.log(this)
+    this.animate([{opacity: '1'}, {opacity: '0'}], 500)
+    setTimeout(fadeoutModal, 500)
+    restart()
+    document.getElementById('modal-box').addEventListener('click', function(e){
+      e.stopPropagation()
+    })
+  })
+}
+
+// ------------------------ functions to restart -------------------------
+
+
+function fadeoutModal(){
+  document.getElementById('modal-wrapper').style.display = 'none'
+}
+
+
+function restart(){
+  clearBoxes()
+  // set question
+  const question = createQuestion()
+  console.log(`Question is ${question}`)
+
+  // reset arr
+  // guessesArr = ['','','','','']
+  for (let i=0; i< guessesArr.length ; i++) {
+    guessesArr[i] = ''
+  }
+  console.log(guessesArr)
+  console.log(howManyLetters)
+
+  // clear answerCount
+  answerCount = 0
+  console.log(answerCount)
+  function invisibleGameArea(){
+    document.getElementById('gameArea').animate([{opacity: '1'}, {opacity: '0'}], 500)
+    document.querySelector('h1').animate([{opacity: '1'}, {opacity: '0'}], 500)
+    document.getElementById('onscreenArea').animate([{opacity: '1'}, {opacity: '0'}], 500)
+    document.querySelector('h3').animate([{opacity: '1'}, {opacity: '0'}], 500)
+    setTimeout(displayNoneGameArea, 480 )
+  }
+  function displayNoneGameArea(){
+    document.getElementById('gameArea').style.display = 'none'
+    document.querySelector('h1').style.display = 'none'
+    document.getElementById('onscreenArea').style.display = 'none'
+    document.querySelector('h3').style.display = 'none'
+  }
+  setTimeout(invisibleGameArea, 500) // ~ 1000ms
+  function reload(){
+    document.location.reload()
+  }
+  setTimeout(reload, 550)
 }
 
 

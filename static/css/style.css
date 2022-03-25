@@ -7,10 +7,54 @@ body{
   background-image:url("../imgs/marble.jpg");
 }
 
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 50px;
+}
+
+hr {
+  height: 2px;
+  background-color: lightgrey;
+  border: none;
+}
+
+#icon {
+  display: flex;
+  height: 40px;
+  position: absolute;
+  top: 15%;
+  left: 20%;
+}
+
+.icon-box {
+  margin: 3px;
+  background-color: grey;
+  color: #ffffff;
+  padding: 4px 9px;
+}
+
+.icon-green {
+  background-color: green;
+}
+
+.icon-yellow {
+  background-color: rgba(241,202,43,0.85);
+}
+
+.icon-box > p {
+  margin-top: 2px;
+}
+
 /* start */
 
 h1 {
-  margin-bottom: 10px;
+  margin: 10px 100px;
+  position: absolute;
+  top: 5%;
+  left: 41%;
 }
 
 #startArea{
@@ -130,7 +174,7 @@ input{
   display: none;
 }
 
-.modal-box {
+#modal-box {
   position: absolute;
   top: 20%;
   left: 34%;
