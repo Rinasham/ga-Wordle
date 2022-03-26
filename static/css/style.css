@@ -120,6 +120,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin:  -3em 0;
 
   /* 後でコメントアウト */
   /* display: none; */
@@ -147,12 +148,12 @@ h1 {
   justify-content: center;
 }
 .box{
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border: 3px solid lightgrey;
   margin: 3px;
   font-size: 25px;
-  line-height: 300%;
+  line-height: 200%;
   background-color: rgba(255,255,255,0.85);
 }
 
@@ -164,6 +165,7 @@ h1 {
   /* 後でコメント戻す ↓ */
   display: none;
 }
+
 
 /* #answerBtn{
   padding: 10px 40px;
@@ -195,7 +197,7 @@ input{
 
 .keys{
   width: 50px;
-  height: 70px;
+  height: 55px;
   font-family: 'Bungee', cursive;
   font-size: 18px;
   border: none;
